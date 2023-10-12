@@ -61,18 +61,18 @@
         <CONFIGURATION isDebug="0" name="Release" targetName="MultibandCompressor"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_utils" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Downloads/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
