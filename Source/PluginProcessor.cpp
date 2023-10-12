@@ -131,7 +131,7 @@ void MultibandCompressorAudioProcessor::releaseResources()
 
 	APFR.setSR(FS);
 	APFR.setFilterType(3);
-	APFR.setFc(1);
+	APFR.setFc(4e3);
 	APFL.setSR(FS);
 	APFL.setFilterType(3);
 	APFL.setFc(4e3);
@@ -229,7 +229,6 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
 
 		}
 	}
-
 }
 
 //==============================================================================
