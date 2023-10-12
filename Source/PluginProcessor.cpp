@@ -93,48 +93,46 @@ void MultibandCompressorAudioProcessor::changeProgramName(int index, const juce:
 //==============================================================================
 void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
-	// Use this method as the place to do any pre-playback
-	// initialisation that you need..
+    float FS = AudioProcessor::getSampleRate();
+    
+    LPFR.setSR(FS);
+    LPFR.setFilterType(2);
+    LPFR.setFc(300);
+    LPFL.setSR(FS);
+    LPFL.setFilterType(2);
+    LPFL.setFc(300);
+    
+    HPFR.setSR(FS);
+    HPFR.setFilterType(1);
+    HPFR.setFc(4000);
+    HPFL.setSR(FS);
+    HPFL.setFilterType(1);
+    HPFL.setFc(4000);
+    
+    HPFmL.setSR(FS);
+    HPFmL.setFilterType(1);
+    HPFmL.setFc(300);
+    LPFmL.setSR(FS);
+    LPFmL.setFilterType(2);
+    LPFmL.setFc(4000);
+    
+    HPFmR.setSR(FS);
+    HPFmR.setFilterType(1);
+    HPFmR.setFc(300);
+    LPFmR.setSR(FS);
+    LPFmR.setFilterType(2);
+    LPFmR.setFc(4000);
+    
+    APFR.setSR(FS);
+    APFR.setFilterType(3);
+    APFR.setFc(4e3);
+    APFL.setSR(FS);
+    APFL.setFilterType(3);
+    APFL.setFc(4e3);
 }
 
 void MultibandCompressorAudioProcessor::releaseResources()
 {
-	float FS = AudioProcessor::getSampleRate();
-
-	LPFR.setSR(FS);
-	LPFR.setFilterType(2);
-	LPFR.setFc(300);
-	LPFL.setSR(FS);
-	LPFL.setFilterType(2);
-	LPFL.setFc(300);
-
-	HPFR.setSR(FS);
-	HPFR.setFilterType(1);
-	HPFR.setFc(4000);
-	HPFL.setSR(FS);
-	HPFL.setFilterType(1);
-	HPFL.setFc(4000);
-
-	HPFmL.setSR(FS);
-	HPFmL.setFilterType(1);
-	HPFmL.setFc(300);
-	LPFmL.setSR(FS);
-	LPFmL.setFilterType(2);
-	LPFmL.setFc(4000);
-
-	HPFmR.setSR(FS);
-	HPFmR.setFilterType(1);
-	HPFmR.setFc(300);
-	LPFmR.setSR(FS);
-	LPFmR.setFilterType(2);
-	LPFmR.setFc(4000);
-
-	APFR.setSR(FS);
-	APFR.setFilterType(3);
-	APFR.setFc(4e3);
-	APFL.setSR(FS);
-	APFL.setFilterType(3);
-	APFL.setFc(4e3);
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations

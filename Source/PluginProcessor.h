@@ -62,5 +62,5 @@ private:
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MultibandCompressorAudioProcessor);
 	float FS;
 	Filter LPFR, LPFL, HPFR, HPFL, HPFmL, LPFmL, HPFmR, LPFmR, APFR, APFL;
-	float firstPR, secondPR, thirdPR, firstPL, secondPL, thirdPL;
+	float firstPR, secondPR, thirdPR, firstPL, secondPL, thirdPL = 0;
 };

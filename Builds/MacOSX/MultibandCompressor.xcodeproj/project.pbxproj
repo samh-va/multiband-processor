@@ -77,7 +77,7 @@
 		79049F272AD7B31300EB5CC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4CCC6079C075527BFAD938 /* QuartzCore.framework */; };
 		79049F282AD7B31300EB5CC9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26D623465667D4DD4C94C81 /* Security.framework */; };
 		79049F292AD7B31300EB5CC9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73873A1ECDAA33D85AF050 /* WebKit.framework */; };
-		79049F342AD7B39600EB5CC9 /* PluginProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A24998D02A53D28D3C904BA /* PluginProcessor.cpp */; };
+		79049F392AD7B6AC00EB5CC9 /* PluginProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A24998D02A53D28D3C904BA /* PluginProcessor.cpp */; };
 		7F55EFEC16EBEBD46BD90D1F /* juce_VST3ManifestHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4AE5070BF87E723D0AA3042 /* juce_VST3ManifestHelper.mm */; settings = {COMPILER_FLAGS = "-std=c++17 -fobjc-arc -w -DJUCE_SKIP_PRECOMPILED_HEADER"; }; };
 		8D816086219B18DFA5ED658C /* include_juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = FB384DB2E1A7C5430402E5B6 /* include_juce_audio_processors.mm */; };
 		95E2FF16C5ECE02024F2B9E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26D623465667D4DD4C94C81 /* Security.framework */; };
@@ -87,7 +87,6 @@
 		A8BFCA7602FB93F3B8FF574F /* include_juce_audio_processors_ara.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6572DAD9D4DD087C9A30162 /* include_juce_audio_processors_ara.cpp */; };
 		AEB4A02C18507A6E0538BCF6 /* DiscRecording.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E0BA3289A6321EFC8EB43A /* DiscRecording.framework */; };
 		B767359C4F2EB08C59ADB6D6 /* include_juce_audio_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22772C30AC7FFC4A0F6AC117 /* include_juce_audio_utils.mm */; };
-		BC1B781499ECFD87075679A9 /* PluginProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A24998D02A53D28D3C904BA /* PluginProcessor.cpp */; };
 		C4FE5B4BE8FBEFBC4B2922A1 /* include_juce_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B83A33FF06935E30DA4B766 /* include_juce_graphics.mm */; };
 		CA4357E22D07DDDFC514B8F3 /* include_juce_data_structures.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A77B585BFFB8A651EFE917E /* include_juce_data_structures.mm */; };
 		CC165A390BED55206407DBD8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677864B6F4A49D2503687D18 /* IOKit.framework */; };
@@ -317,6 +316,7 @@
 		0D65B881E6EF22A8B3791E97 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5D726392EE9BECA4627251F2 /* Filter */,
 				5A24998D02A53D28D3C904BA /* PluginProcessor.cpp */,
 				663592219A80D2646CA53F52 /* PluginProcessor.h */,
 				CF9919FA42B29F9E7920604A /* PluginEditor.cpp */,
@@ -355,7 +355,6 @@
 		2FE2860627378CC9D4CC0E58 /* MultibandCompressor */ = {
 			isa = PBXGroup;
 			children = (
-				5D726392EE9BECA4627251F2 /* Filter */,
 				0D65B881E6EF22A8B3791E97 /* Source */,
 			);
 			name = MultibandCompressor;
@@ -551,7 +550,8 @@
 		4D7B6775EE084F238B52C678 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1340;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					1E135AF51985FA5313ED6FF5 = {
@@ -765,7 +765,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90A0A3C842F50031466E608 /* include_juce_audio_plugin_client_VST3.mm in Sources */,
-				79049F342AD7B39600EB5CC9 /* PluginProcessor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,10 +773,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6805664F28C70B634D098AC9 /* Filter.cpp in Sources */,
-				BC1B781499ECFD87075679A9 /* PluginProcessor.cpp in Sources */,
 				DCFDFB5A14C717B1C5000BC9 /* PluginEditor.cpp in Sources */,
 				38A9083071FBF3C2416714D1 /* include_juce_audio_basics.mm in Sources */,
 				EBD4E03956FAA30DA103BA3E /* include_juce_audio_devices.mm in Sources */,
+				79049F392AD7B6AC00EB5CC9 /* PluginProcessor.cpp in Sources */,
 				CFB4B9D0E135C1BED3678A12 /* include_juce_audio_formats.mm in Sources */,
 				16BD5D89122F0CBFBDEDA272 /* include_juce_audio_plugin_client_ARA.cpp in Sources */,
 				8D816086219B18DFA5ED658C /* include_juce_audio_processors.mm in Sources */,
@@ -870,6 +869,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -959,7 +959,7 @@
 				);
 				INFOPLIST_FILE = "Info-VST3_Manifest_Helper.plist";
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1073,7 +1073,7 @@
 				INFOPLIST_FILE = "Info-Standalone_Plugin.plist";
 				INFOPLIST_PREPROCESS = NO;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-lMultibandCompressor",
@@ -1188,7 +1188,7 @@
 				INFOPLIST_FILE = "Info-VST3_Manifest_Helper.plist";
 				INFOPLIST_PREPROCESS = NO;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1212,6 +1212,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
 				EXCLUDED_ARCHS = "";
@@ -1306,7 +1307,7 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST3/";
 				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-bundle",
@@ -1333,6 +1334,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1422,7 +1424,7 @@
 				);
 				INFOPLIST_FILE = "Info-Standalone_Plugin.plist";
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-lMultibandCompressor",
@@ -1447,6 +1449,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
 				EXCLUDED_ARCHS = "";
@@ -1541,7 +1544,7 @@
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
 				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-bundle",
@@ -1563,7 +1566,8 @@
 		84A0D32ED0C414AD2521DA3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1667,7 +1671,7 @@
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1686,7 +1690,8 @@
 		AF6389868DE0CF6952863761 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1700,6 +1705,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				EXCLUDED_ARCHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1789,7 +1795,7 @@
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1909,7 +1915,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST3/";
 				LIBRARY_STYLE = Bundle;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-bundle",
@@ -1944,11 +1950,13 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
@@ -1991,14 +1999,16 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = G5;
@@ -2126,7 +2136,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
 				LIBRARY_STYLE = Bundle;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../../Downloads/JUCE/modules $(SRCROOT)/../../../../Downloads/JUCE/modules/juce_audio_plugin_client/AU";
 				OTHER_LDFLAGS = (
 					"-bundle",
