@@ -4,6 +4,19 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{0E28F30D-744E-F7AD-37C6-F89B7B4192F6}" name="PDF Circular Buffer">
+      <FILE id="jHHk9H" name="PDF_CirBuffer.cpp" compile="1" resource="0"
+            file="Source/PDF_CirBuffer.cpp"/>
+      <FILE id="V1JaFN" name="PDF_CirBuffer.h" compile="0" resource="0" file="Source/PDF_CirBuffer.h"/>
+    </GROUP>
+    <GROUP id="{C3902943-89F0-764D-98BA-F819932F035E}" name="Circular Buffer">
+      <FILE id="A6Sp6R" name="CirBuffer.cpp" compile="1" resource="0" file="Source/CirBuffer.cpp"/>
+      <FILE id="pAJzVn" name="CirBuffer.h" compile="0" resource="0" file="Source/CirBuffer.h"/>
+    </GROUP>
+    <GROUP id="{30F855ED-3FC5-4637-6B5B-F0E067C308D7}" name="Compressor">
+      <FILE id="GiW5uF" name="Compressor.cpp" compile="1" resource="0" file="Source/Compressor.cpp"/>
+      <FILE id="aJVqf8" name="Compressor.h" compile="0" resource="0" file="Source/Compressor.h"/>
+    </GROUP>
     <GROUP id="{AE6810E2-F0BC-595E-2920-78CA4C79C2A9}" name="Source">
       <FILE id="Uu4XZJ" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

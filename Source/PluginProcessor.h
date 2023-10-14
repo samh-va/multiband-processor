@@ -9,7 +9,9 @@
 #pragma once
 
 #include <JuceHeader.h>
-
+#include "Compressor.h"
+#include "PDF_CirBuffer.h"
+#include "CirBuffer.h"
 //==============================================================================
 /**
 */
@@ -59,4 +61,8 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultibandCompressorAudioProcessor)
+    Compressor CompL;
+    Compressor CompR;
+    float Fs;
+    
 };

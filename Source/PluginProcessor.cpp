@@ -93,8 +93,17 @@ void MultibandCompressorAudioProcessor::changeProgramName (int index, const juce
 //==============================================================================
 void MultibandCompressorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    Fs = AudioProcessor::getSampleRate();
+    float tamax = 20e-3;
+    float trmax = 200e-3;
+    
+    CompL.setTHandR(-4, 5);
+    CompL.Tamax = tamax;
+    CompL.Trmax = trmax;
+    
+    CompR.setTHandR(-4, 5);
+    CompR.Tamax = tamax;
+    CompR.Trmax = trmax;
 }
 
 void MultibandCompressorAudioProcessor::releaseResources()
@@ -155,8 +164,24 @@ void MultibandCompressorAudioProcessor::processBlock (juce::AudioBuffer<float>& 
         for (int channel = 0; channel < totalNumInputChannels; ++channel)
         {
             auto* channelData = buffer.getWritePointer(channel);
+            float samp = channelData[sample];
+            if (channel == 0)
+            {
+                float outsampL = CompL.Compressing(samp, 0, Fs);
+                
+                channelData[sample]=outsampL;
+            }
             
-            // ..do something to the data...
+            else if (channel == 1)
+            {
+                float outsampR = CompR.Compressing(samp, 0, Fs);
+                
+                channelData[sample]=outsampR;
+            }
+           
+            
+            
+            
         }
     }
 }

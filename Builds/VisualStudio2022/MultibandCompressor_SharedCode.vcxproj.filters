@@ -2,6 +2,15 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="MultibandCompressor\PDF Circular Buffer">
+      <UniqueIdentifier>{98D92F57-9870-607B-17F9-A93757ACC46B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultibandCompressor\Circular Buffer">
+      <UniqueIdentifier>{F63A7038-2EC3-151D-9F7C-2C10E02EB94B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultibandCompressor\Compressor">
+      <UniqueIdentifier>{2696E4E3-5C65-1836-267D-53303D216650}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MultibandCompressor\Source">
       <UniqueIdentifier>{6B5D3108-74E8-647D-064D-9C3BD0B599D4}</UniqueIdentifier>
     </Filter>
@@ -592,6 +601,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\PDF_CirBuffer.cpp">
+      <Filter>MultibandCompressor\PDF Circular Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CirBuffer.cpp">
+      <Filter>MultibandCompressor\Circular Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Compressor.cpp">
+      <Filter>MultibandCompressor\Compressor</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>MultibandCompressor\Source</Filter>
     </ClCompile>
@@ -3006,6 +3024,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PDF_CirBuffer.h">
+      <Filter>MultibandCompressor\PDF Circular Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CirBuffer.h">
+      <Filter>MultibandCompressor\Circular Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Compressor.h">
+      <Filter>MultibandCompressor\Compressor</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>MultibandCompressor\Source</Filter>
     </ClInclude>
