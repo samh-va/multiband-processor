@@ -17,6 +17,8 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="d0BhR8" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="c3iSAr" name="StyleSheet.cpp" compile="1" resource="0" file="Source/StyleSheet.cpp"/>
+    <FILE id="qJ7vz6" name="StyleSheet.h" compile="0" resource="0" file="Source/StyleSheet.h"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>

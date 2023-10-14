@@ -142,6 +142,7 @@
     <ClCompile Include="..\..\Source\Filter\Filter.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
+    <ClCompile Include="..\..\Source\StyleSheet.cpp"/>
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2391,6 +2392,7 @@
     <ClInclude Include="..\..\Source\Filter\Filter.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
+    <ClInclude Include="..\..\Source\StyleSheet.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
