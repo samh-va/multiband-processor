@@ -15,42 +15,65 @@
 //==============================================================================
 /**
 */
-class MultibandCompressorAudioProcessorEditor : public juce::AudioProcessorEditor
-{
+class MultibandCompressorAudioProcessorEditor : public juce::AudioProcessorEditor {
 public:
-	MultibandCompressorAudioProcessorEditor(MultibandCompressorAudioProcessor&);
+	MultibandCompressorAudioProcessorEditor(MultibandCompressorAudioProcessor &);
+
 	~MultibandCompressorAudioProcessorEditor() override;
 
 	//==============================================================================
-	void paint(juce::Graphics&) override;
+	void paint(juce::Graphics &) override;
+
 	void resized() override;
 
 private:
 	// This reference is provided as a quick way for your editor to
 	// access the processor object that created it.
-	MultibandCompressorAudioProcessor& audioProcessor;
-	double progressBarUI;
-
+	MultibandCompressorAudioProcessor &audioProcessor;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MultibandCompressorAudioProcessorEditor)
 	juce::StyleSheet customLNF;
+	juce::Array<juce::String> dropDownOptions = {"In", "GN", "Out"};
+	double progressBarUI = 1.0;
+
 	//LowBand Compressor Panel
-	juce::CustomProgressBar LowCProgressBar{ progressBarUI };
+	juce::Label LbPgBarLabel;
+	juce::Label LbCTitle;
+	juce::Label LbAUMSliderLabel;
+	juce::Label LbAMSSliderLabel;
+	juce::Label LbRMSSliderLabel;
+	std::vector<juce::Label *> LCLabels = {&LbAUMSliderLabel, &LbAMSSliderLabel, &LbRMSSliderLabel, &LbCTitle};
+	juce::CustomProgressBar LowCProgressBar{progressBarUI};
 	juce::ComboBox LowCCombo;
 	juce::CustomDial LowCAUMSlider;
 	juce::CustomDial LowCAMSlider;
 	juce::CustomDial LowCRMSlider;
 
 	//HighBand Compressor Panel
-	juce::CustomProgressBar HighCProgressBar{ progressBarUI };
+	juce::Label HbCTitle;
+	juce::CustomProgressBar HighCProgressBar{progressBarUI};
 	juce::ComboBox HighCCombo;
 	juce::CustomDial HighCAUMSlider;
 	juce::CustomDial HighCAMSlider;
 	juce::CustomDial HighCRMSlider;
+	juce::Label HbPgBarLabel;
+	juce::Label HbAUMSliderLabel;
+	juce::Label HbAMSSliderLabel;
+	juce::Label HbRMSSliderLabel;
 
+	std::vector<juce::Label *> HCLabels = {&HbAUMSliderLabel, &HbAMSSliderLabel, &HbRMSSliderLabel, &HbCTitle};
 	//Band Compressor Panel
-	juce::CustomProgressBar BandCProgressBar{ progressBarUI };
+	juce::Label BCTitle;
+	juce::Label BCPgBarLabel;
+	juce::Label BCAUMSliderLabel;
+	juce::Label BCAMSSliderLabel;
+	juce::Label BCRMSSliderLabel;
+	std::vector<juce::Label *> BCLabels = {&BCAMSSliderLabel, &BCRMSSliderLabel, &BCAUMSliderLabel, &BCTitle};
+	juce::CustomProgressBar BandCProgressBar{progressBarUI};
 	juce::ComboBox BandCCombo;
 	juce::CustomDial BandCAUMSlider;
+
 	juce::CustomDial BandCAMSlider;
 	juce::CustomDial BandCRMSlider;
+
+
 };

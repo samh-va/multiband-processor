@@ -139,10 +139,14 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\CompressorPanel.cpp"/>
+    <ClCompile Include="..\..\Source\CustomDial.cpp"/>
+    <ClCompile Include="..\..\Source\CustomDropdown.cpp"/>
+    <ClCompile Include="..\..\Source\CustomProgressBar.cpp"/>
+    <ClCompile Include="..\..\Source\StyleSheet.cpp"/>
     <ClCompile Include="..\..\Source\Filter\Filter.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
-    <ClCompile Include="..\..\Source\StyleSheet.cpp"/>
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2389,10 +2393,14 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CompressorPanel.h"/>
+    <ClInclude Include="..\..\Source\CustomDial.h"/>
+    <ClInclude Include="..\..\Source\CustomDropdown.h"/>
+    <ClInclude Include="..\..\Source\CustomProgressBar.h"/>
+    <ClInclude Include="..\..\Source\StyleSheet.h"/>
     <ClInclude Include="..\..\Source\Filter\Filter.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
-    <ClInclude Include="..\..\Source\StyleSheet.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

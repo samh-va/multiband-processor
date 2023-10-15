@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="MultibandCompressor\UI">
+      <UniqueIdentifier>{F43FF60B-F2A3-EA9D-664B-B342077BAB16}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MultibandCompressor\Filter">
       <UniqueIdentifier>{6B6738C5-9637-FF75-226A-037D94BA35E8}</UniqueIdentifier>
     </Filter>
@@ -595,6 +598,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\CompressorPanel.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomDial.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomDropdown.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomProgressBar.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\StyleSheet.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Filter\Filter.cpp">
       <Filter>MultibandCompressor\Filter</Filter>
     </ClCompile>
@@ -603,9 +621,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
       <Filter>MultibandCompressor\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\StyleSheet.cpp">
-      <Filter>MultibandCompressor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.cpp">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
@@ -3015,6 +3030,21 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CompressorPanel.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomDial.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomDropdown.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomProgressBar.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\StyleSheet.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Filter\Filter.h">
       <Filter>MultibandCompressor\Filter</Filter>
     </ClInclude>
@@ -3023,9 +3053,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
       <Filter>MultibandCompressor\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\StyleSheet.h">
-      <Filter>MultibandCompressor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
