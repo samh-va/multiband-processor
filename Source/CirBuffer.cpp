@@ -17,7 +17,6 @@ deltaRMS(0),
 RMSactual(0),
 RMSanterior(0),
 counter(0),
-delayindex(0),
 updateRMS(false),
 bufferSize(512)
 {}
@@ -27,20 +26,21 @@ void CirBuffer::setSample(double value) {
         buffer[index] = value;
         counter++;
 
-        if (counter == bufferSize / 2) {
+        if (counter == bufferSize) {
             deltaRMS = calculateDelta();
             updateRMS = true;
             counter = 0;
         }
 
         index++;
-        if (index >= bufferSize) {
-            index -= bufferSize;
+        if (index >= bufferSize*2)
+        {
+            index -= bufferSize*2;
         }
     }
 
 double CirBuffer::calculateDelta() {
-        int ini = (index - counter + 1 + bufferSize) % bufferSize;
+    int ini = (- index + counter -1);
         RMSactual = rms(ini, index);
         double delta = RMSactual - RMSanterior;
         RMSanterior = RMSactual;
@@ -57,8 +57,8 @@ double CirBuffer::getRMS() {
 double CirBuffer::getSample() {
     double samp = buffer[delayindex];
     delayindex++;
-    if (delayindex >= bufferSize) {
-        delayindex -= bufferSize;
+    if (delayindex >= bufferSize*2) {
+        delayindex -= bufferSize*2;
     }
     return samp;
 }
@@ -73,4 +73,12 @@ void CirBuffer::setBuffSize(int size)
 {
     buffer.resize(2 * size, 0.0);
     delayindex = index + size;
+}
+
+double CirBuffer::rms(int start, int end) {
+    double sum = 0.0;
+    for (int i = start; i <= end; ++i) {
+        sum += buffer[i] * buffer[i];
+    }
+    return std::sqrt(sum / (bufferSize));
 }

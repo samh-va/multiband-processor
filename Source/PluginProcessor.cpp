@@ -94,16 +94,27 @@ void MultibandCompressorAudioProcessor::changeProgramName (int index, const juce
 void MultibandCompressorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     Fs = AudioProcessor::getSampleRate();
-    float tamax = 20e-3;
-    float trmax = 200e-3;
+    buffSize = AudioProcessor::getBlockSize();
     
-    CompL.setTHandR(-4, 5);
-    CompL.Tamax = tamax;
-    CompL.Trmax = trmax;
+//    float tamax = 20e-3;
+//    float trmax = 200e-3;
     
-    CompR.setTHandR(-4, 5);
-    CompR.Tamax = tamax;
-    CompR.Trmax = trmax;
+    int buffPDFsize = 80;
+    
+    CompL.setTHandR(-4, 5,Fs);
+//    CompL.Tamax = tamax;
+//    CompL.Trmax = trmax;
+    LimitL.setLimiter(-0.1, 0.05-4, 0.05-4, Fs);
+    
+//    CompR.setTHandR(-4, 5);
+//    CompR.Tamax = tamax;
+//    CompR.Trmax = trmax;
+    
+    buffCirL.setBuffSize(buffSize);
+    buffPDF_L.setbuffSizePDF(buffPDFsize);
+    
+    
+    
 }
 
 void MultibandCompressorAudioProcessor::releaseResources()
@@ -165,18 +176,36 @@ void MultibandCompressorAudioProcessor::processBlock (juce::AudioBuffer<float>& 
         {
             auto* channelData = buffer.getWritePointer(channel);
             float samp = channelData[sample];
+            
             if (channel == 0)
             {
-                float outsampL = CompL.Compressing(samp, 0, Fs);
                 
-                channelData[sample]=outsampL;
+                
+                buffCirL.setSample(samp);
+                auto deltaL = buffCirL.getdeltaRMS();
+                if(buffCirL.getupdateRMS())
+                {
+                    auto rmsL = buffCirL.getRMS();
+                    buffPDF_L.setPDF(rmsL);
+                    if (buffPDF_L.getFlag())
+                    {
+                        auto meanY_L = buffPDF_L.getMedia();
+                        CompL.calculateMakeUp(meanY_L);
+                    }
+                }
+                
+                float sampOne = buffCirL.getSample();
+                
+                auto outSamp = CompL.Compressing(sampOne, deltaL);
+                
+                channelData[sample]=LimitL.Limiting(outSamp);
             }
             
             else if (channel == 1)
             {
-                float outsampR = CompR.Compressing(samp, 0, Fs);
+//                float outsampR = CompR.Compressing(samp, 0, Fs);
                 
-                channelData[sample]=outsampR;
+                channelData[sample]=samp;
             }
            
             

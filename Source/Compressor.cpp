@@ -14,13 +14,14 @@ Compressor::Compressor():
 yn1(0),
 alphaat(0),
 alphare(0),
-makeup(0)
+makeup(0),
+Fsamp(44.1e3)
 {}
 
-float Compressor::Compressing(float xn, double delta, float fs)
+float Compressor::Compressing(float xn, double delta)
 {
     
-    Autoballistic(delta,fs);
+    Autoballistic(delta);
     float xdB = 20*log10(abs(xn));
     float xg,yg,xl,yl = 0;
     
@@ -38,7 +39,7 @@ float Compressor::Compressing(float xn, double delta, float fs)
 
     if (xg >= TH)
     {
-        yg = TH + (xg - TH)*(1/R);
+        yg = TH + (xg - TH)*(1 - (1/R));
     }
     else
     {
@@ -70,13 +71,13 @@ float Compressor::Compressing(float xn, double delta, float fs)
     return (xn * c)*Mu;
 }
 
-void Compressor::Autoballistic(double delta, float Fs)
+void Compressor::Autoballistic(double delta)
 {
     float attackTime = Tamax*(1-(2 * std::max(0.0, delta))); //Tamax y Trmax LO MODIFICA EL USUARIO
     float releaseTime = Trmax*(1+(2 * std::min(0.0, delta)));
 
-    alphaat = exp(-1/(1e-3 * Fs * attackTime));
-    alphare = exp(-1/(1e-3 * Fs * releaseTime));
+    alphaat = exp(-1/(1e-3 * Fsamp * attackTime));
+    alphare = exp(-1/(1e-3 * Fsamp * releaseTime));
 }
 
 void Compressor::calculateMakeUp(float valuein)
@@ -91,8 +92,9 @@ void Compressor::calculateMakeUp(float valuein)
     }
 }
 
-void Compressor::setTHandR(float th, float r)
+void Compressor::setTHandR(float th, float r,float Fs)
 {
     TH = th;
     R = r;
+    Fsamp = Fs;
 }

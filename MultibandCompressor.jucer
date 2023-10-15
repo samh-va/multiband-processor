@@ -4,6 +4,10 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{A59A3F5B-0A43-6FD3-B06F-1C3B458A5366}" name="Limiter">
+      <FILE id="FUanqD" name="Limiter.cpp" compile="1" resource="0" file="Source/Limiter.cpp"/>
+      <FILE id="ZpU6Dd" name="Limiter.h" compile="0" resource="0" file="Source/Limiter.h"/>
+    </GROUP>
     <GROUP id="{0E28F30D-744E-F7AD-37C6-F89B7B4192F6}" name="PDF Circular Buffer">
       <FILE id="jHHk9H" name="PDF_CirBuffer.cpp" compile="1" resource="0"
             file="Source/PDF_CirBuffer.cpp"/>

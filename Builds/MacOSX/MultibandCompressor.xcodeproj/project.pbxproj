@@ -43,6 +43,7 @@
 		632EB593139D92EBEF845A1A /* include_juce_events.mm */ = {isa = PBXBuildFile; fileRef = DB382F56799A35E8B0687250; };
 		6478E03914F6C6AB60A55497 /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = F05AAAACF9038F11BE28C084; };
 		65CFA64A150D651937138EDD /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = EC5EF37A6D8059EB0723DCC4; };
+		790AC1E351A6D85D9329458A /* Limiter.cpp */ = {isa = PBXBuildFile; fileRef = AFA6D7F4CA74F66F09DC6F03; };
 		8D816086219B18DFA5ED658C /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = FB384DB2E1A7C5430402E5B6; };
 		95E2FF16C5ECE02024F2B9E1 /* Security.framework */ = {isa = PBXBuildFile; fileRef = A26D623465667D4DD4C94C81; };
 		97104FF9A6C57B193F7F3FEF /* QuartzCore.framework */ = {isa = PBXBuildFile; fileRef = AB4CCC6079C075527BFAD938; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		0577677FA150910DAFF953CC /* include_juce_audio_plugin_client_ARA.cpp */ /* include_juce_audio_plugin_client_ARA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_ARA.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_ARA.cpp; sourceTree = SOURCE_ROOT; };
 		067EF9ADCC1FD948CF0F4FB5 /* juce_audio_formats */ /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_formats; path = /Users/samuva/Downloads/JUCE/modules/juce_audio_formats; sourceTree = "<absolute>"; };
+		0D992F872449ECACB7F842EF /* Limiter.h */ /* Limiter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Limiter.h; path = ../../Source/Limiter.h; sourceTree = SOURCE_ROOT; };
 		195B523EB833DB6FA00058A8 /* include_juce_audio_plugin_client_VST3.mm */ /* include_juce_audio_plugin_client_VST3.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_VST3.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_VST3.mm; sourceTree = SOURCE_ROOT; };
 		209506C707E5E8D2DA39354C /* Info-VST3.plist */ /* Info-VST3.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3.plist"; path = "Info-VST3.plist"; sourceTree = SOURCE_ROOT; };
 		22772C30AC7FFC4A0F6AC117 /* include_juce_audio_utils.mm */ /* include_juce_audio_utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_utils.mm; path = ../../JuceLibraryCode/include_juce_audio_utils.mm; sourceTree = SOURCE_ROOT; };
@@ -113,6 +115,7 @@
 		AB4CCC6079C075527BFAD938 /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADB9444A2F513ABB93A0D8ED /* CirBuffer.h */ /* CirBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CirBuffer.h; path = ../../Source/CirBuffer.h; sourceTree = SOURCE_ROOT; };
 		AF85D98AA1D39E0A0548449E /* CirBuffer.cpp */ /* CirBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CirBuffer.cpp; path = ../../Source/CirBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		AFA6D7F4CA74F66F09DC6F03 /* Limiter.cpp */ /* Limiter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Limiter.cpp; path = ../../Source/Limiter.cpp; sourceTree = SOURCE_ROOT; };
 		B27D023B2ECED8BA295D6EF2 /* PDF_CirBuffer.h */ /* PDF_CirBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PDF_CirBuffer.h; path = ../../Source/PDF_CirBuffer.h; sourceTree = SOURCE_ROOT; };
 		B7FE4EAA9998F37BD2BCF690 /* Accelerate.framework */ /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C27593B20C43DC0C7E9CEF8B /* include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
@@ -270,6 +273,7 @@
 		2FE2860627378CC9D4CC0E58 /* MultibandCompressor */ = {
 			isa = PBXGroup;
 			children = (
+				6545A5AA6DD0A7D5A0FDC816,
 				CEE0CCA57BD4638725DFB160,
 				2229E5BB179EA9334EBADF3E,
 				BBA2DF38730C49FA64E3A961,
@@ -288,6 +292,15 @@
 				876B35D6BB8FB38FF0031EFC,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6545A5AA6DD0A7D5A0FDC816 /* Limiter */ = {
+			isa = PBXGroup;
+			children = (
+				AFA6D7F4CA74F66F09DC6F03,
+				0D992F872449ECACB7F842EF,
+			);
+			name = Limiter;
 			sourceTree = "<group>";
 		};
 		79E25DEB57E1B27BF48AE263 /* Resources */ = {
@@ -688,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				790AC1E351A6D85D9329458A,
 				62E618E97B5274936E21210A,
 				D6C093BDA83D0040B6C504E5,
 				4E2E2827C4C9E756D84A7A8F,

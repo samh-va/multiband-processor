@@ -14,9 +14,11 @@
 
 class CirPDF
 {
-    CirPDF();
+    
     
 public:
+    CirPDF();
+    
     void setPDF(float value);
     float calculatePDF();
     float getMedia();

@@ -12,6 +12,7 @@
 #include "Compressor.h"
 #include "PDF_CirBuffer.h"
 #include "CirBuffer.h"
+#include "Limiter.h"
 //==============================================================================
 /**
 */
@@ -61,8 +62,16 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultibandCompressorAudioProcessor)
+    Limiter LimitL;
     Compressor CompL;
-    Compressor CompR;
+//    Compressor CompR;
+    CirBuffer buffCirL;
+    CirPDF buffPDF_L;
+    
+    juce::AudioFormatManager formatManager;
+    juce::AudioTransportSource transportSource;
+    
     float Fs;
+    float buffSize;
     
 };

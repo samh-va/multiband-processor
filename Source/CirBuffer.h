@@ -13,8 +13,10 @@
 
 class CirBuffer
 {
-    CirBuffer();
+    
 public:
+    CirBuffer();
+    
     void setSample(double value);
     double calculateDelta();
     double getdeltaRMS();
@@ -22,13 +24,13 @@ public:
     double getSample();
     bool getupdateRMS();
     void setBuffSize(int value);
-    
+
     
 private:
     double rms(int start, int end);
     
-    
     std::vector<double> buffer;
+
     int index;
     double deltaRMS;
     double RMSactual;
