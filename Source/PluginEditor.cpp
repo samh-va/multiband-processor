@@ -1,10 +1,13 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+auto levels = 0.2f;
 
 //==============================================================================
 MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor(MultibandCompressorAudioProcessor &p)
-		: AudioProcessorEditor(&p), audioProcessor(p) {
+		: AudioProcessorEditor(&p), audioProcessor(p), LowCVerticalMeter([&]() { return levels; }),
+		  HighCVerticalMeter([&]() { return levels; }), BandCVerticalMeter([&]() { return levels; }) {
+
 	// Make sure that before the constructor has finished, you've set the
 	// editor's size to whatever you need it to be.
 	setSize(1080, 520);
@@ -12,13 +15,15 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 
 	//LowBand Compressor Panel
 	addAndMakeVisible(LbCTitle);
+
 	addAndMakeVisible(HbCTitle);
 	addAndMakeVisible(BCTitle);
 	addAndMakeVisible(LbPgBarLabel);
 	addAndMakeVisible(LbRMSSliderLabel);
 	addAndMakeVisible(LbAMSSliderLabel);
 	addAndMakeVisible(LbAUMSliderLabel);
-	addAndMakeVisible(LowCProgressBar);
+	addAndMakeVisible(LowCVerticalMeter);
+	addAndMakeVisible(LowCVerticalMeter);
 	addAndMakeVisible(LowCCombo);
 	addAndMakeVisible(LowCAMSlider);
 	addAndMakeVisible(LowCAUMSlider);
@@ -37,7 +42,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	LbAUMSliderLabel.setText("Auto MakeUp", juce::dontSendNotification);
 	LbRMSSliderLabel.setText("Release Max", juce::dontSendNotification);
 	LbAMSSliderLabel.setText("Attack Max", juce::dontSendNotification);
-	LbPgBarLabel.attachToComponent(&LowCProgressBar, false);
+	LbPgBarLabel.attachToComponent(&LowCVerticalMeter, false);
 	LbAUMSliderLabel.attachToComponent(&LowCAUMSlider, false);
 	LbRMSSliderLabel.attachToComponent(&LowCRMSlider, false);
 	LbAMSSliderLabel.attachToComponent(&LowCAMSlider, false);
@@ -47,7 +52,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	//----------------------------------------------------------------------------------------------------------------------//
 
 	//HighBand Compressor Panel
-	addAndMakeVisible(HighCProgressBar);
+	addAndMakeVisible(HighCVerticalMeter);
 	addAndMakeVisible(HighCCombo);
 	addAndMakeVisible(HighCAMSlider);
 	addAndMakeVisible(HighCAUMSlider);
@@ -57,7 +62,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	HbAUMSliderLabel.setText("Auto MakeUp", juce::dontSendNotification);
 	HbRMSSliderLabel.setText("Release Max", juce::dontSendNotification);
 	HbAMSSliderLabel.setText("Attack Max", juce::dontSendNotification);
-	HbPgBarLabel.attachToComponent(&HighCProgressBar, false);
+	HbPgBarLabel.attachToComponent(&HighCVerticalMeter, false);
 	HbAUMSliderLabel.attachToComponent(&HighCAUMSlider, false);
 	HbRMSSliderLabel.attachToComponent(&HighCRMSlider, false);
 	HbAMSSliderLabel.attachToComponent(&HighCAMSlider, false);
@@ -67,7 +72,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 //----------------------------------------------------------------------------------------------//
 
 	//Band Compressor Panel
-	addAndMakeVisible(BandCProgressBar);
+	addAndMakeVisible(BandCVerticalMeter);
 	addAndMakeVisible(BandCCombo);
 	addAndMakeVisible(BandCAMSlider);
 	addAndMakeVisible(BandCAUMSlider);
@@ -78,7 +83,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	BCAUMSliderLabel.setText("Auto MakeUp", juce::dontSendNotification);
 	BCRMSSliderLabel.setText("Release Max", juce::dontSendNotification);
 	BCAMSSliderLabel.setText("Attack Max", juce::dontSendNotification);
-	BCPgBarLabel.attachToComponent(&BandCProgressBar, false);
+	BCPgBarLabel.attachToComponent(&BandCVerticalMeter, false);
 	BCAUMSliderLabel.attachToComponent(&BandCAUMSlider, false);
 	BCRMSSliderLabel.attachToComponent(&BandCRMSlider, false);
 	BCAMSSliderLabel.attachToComponent(&BandCAMSlider, false);
@@ -110,27 +115,27 @@ void MultibandCompressorAudioProcessorEditor::paint(juce::Graphics &g) {
 
 void MultibandCompressorAudioProcessorEditor::resized() {
 	//LowBand Compressor Panel
-	LbCTitle.setBounds(13, 14, 323, 58);
+	LbCTitle.setBounds(15, 14, 323, 58);
 	LbPgBarLabel.setBounds(20, 407, 20, 20);
-	LowCProgressBar.setBounds(20, 66, 48, 402);
-	LowCCombo.setBounds(85, 66, 222, 55);
-	LowCAMSlider.setBounds(179, 310, 153, 125);
-	LowCAUMSlider.setBounds(121, 148, 153, 125);
-	LowCRMSlider.setBounds(59, 310, 153, 125);
+	LowCVerticalMeter.setBounds(20, 66, meterWidth,meterHeight);
+	LowCCombo.setBounds(115, 66, comboWidth,comboHeight);
+	LowCAUMSlider.setBounds(152, 160, dialWidth,dialHeight);
+	LowCAMSlider.setBounds(210, 343, dialWidth,dialHeight);
+	LowCRMSlider.setBounds(90, 343, dialWidth,dialHeight);
 
 	//HighBand Compressor Panel
-	HbCTitle.setBounds(374,14,323,58);
-	HighCProgressBar.setBounds(381, 66, 48, 402);
-	HighCCombo.setBounds(450, 66, 222, 55);
-	HighCAMSlider.setBounds(553, 310, 153, 125);
-	HighCAUMSlider.setBounds(495, 148, 153, 125);
-	HighCRMSlider.setBounds(433, 310, 153, 125);
+	HbCTitle.setBounds(374, 14, 323, 58);
+	HighCVerticalMeter.setBounds(380, 66, meterWidth,meterHeight);
+	HighCCombo.setBounds(475, 66, comboWidth,comboHeight);
+	HighCAUMSlider.setBounds(512, 160, dialWidth,dialHeight);
+	HighCAMSlider.setBounds(570, 343, dialWidth,dialHeight);
+	HighCRMSlider.setBounds(450, 343, dialWidth,dialHeight);
 
 	//Band Compressor Panel
-	BCTitle.setBounds(733,14,323,58);
-	BandCProgressBar.setBounds(750, 66, 48, 402);
-	BandCCombo.setBounds(815, 66, 222, 55);
-	BandCAMSlider.setBounds(912, 310, 153, 125);
-	BandCAUMSlider.setBounds(854, 148, 153, 125);
-	BandCRMSlider.setBounds(792, 310, 153, 125);
+	BCTitle.setBounds(733, 14, 323, 58);
+	BandCVerticalMeter.setBounds(750, 66, meterWidth,meterHeight);
+	BandCCombo.setBounds(845, 66, comboWidth,comboHeight);
+	BandCAUMSlider.setBounds(882, 160, dialWidth,dialHeight);
+	BandCAMSlider.setBounds(940, 343, dialWidth,dialHeight);
+	BandCRMSlider.setBounds(820, 343, dialWidth,dialHeight);
 }

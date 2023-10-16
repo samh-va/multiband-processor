@@ -55,60 +55,6 @@ namespace juce {
 				   thumbPoint.getY(), lineW);
 	}
 
-	void StyleSheet::drawLinearProgressBar(Graphics& g, const ProgressBar& progressBar, int width, int height,
-										   double progress, const String& textToShow) {
-		auto background = progressBar.findColour(ProgressBar::backgroundColourId);
-		auto foreground = progressBar.findColour(ProgressBar::foregroundColourId);
-
-		auto barBounds = progressBar.getLocalBounds().toFloat();
-
-		g.setColour(background);
-		g.fillRoundedRectangle(barBounds, 0);
-
-		if (progress >= 0.0f && progress <= 1.0f) {
-			Path p;
-			p.addRoundedRectangle(barBounds, 0);
-			g.reduceClipRegion(p);
-
-			barBounds.setWidth(barBounds.getWidth() * (float) progress);
-			g.setColour(foreground);
-			g.fillRoundedRectangle(barBounds, 0);
-		} else {
-			// spinning bar..
-			g.setColour(background);
-
-			auto stripeWidth = height * 2;
-			auto position = static_cast<int> (Time::getMillisecondCounter() / 15) % stripeWidth;
-
-			Path p;
-
-			for (auto x = static_cast<float> (-position);
-				 x < (float) (width + stripeWidth); x += (float) stripeWidth)
-				p.addQuadrilateral(x, 0.0f,
-								   x + (float) stripeWidth * 0.5f, 0.0f,
-								   x, static_cast<float> (height),
-								   x - (float) stripeWidth * 0.5f, static_cast<float> (height));
-
-			Image im(Image::ARGB, width, height, true);
-
-			{
-				Graphics g2(im);
-				g2.setColour(foreground);
-				g2.fillRoundedRectangle(barBounds, (float) progressBar.getHeight() * 0.5f);
-			}
-
-			g.setTiledImageFill(im, 0, 0, 0.85f);
-			g.fillPath(p);
-		}
-
-		if (textToShow.isNotEmpty()) {
-			g.setColour(Colour::contrasting(background, foreground));
-			g.setFont((float) height * 0.6f);
-
-			g.drawText(textToShow, 0, 0, width, height, Justification::centred, false);
-		}
-	}
-
 
 	CustomDial::CustomDial() {
 		setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
@@ -117,5 +63,12 @@ namespace juce {
 		setColour(juce::Slider::thumbColourId, Colour::fromRGB(37, 36, 34));
 		setNumDecimalPlacesToDisplay(1);
 		setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 25);
+	}
+
+	CustomCombo::CustomCombo() {
+		setColour(juce::ComboBox::backgroundColourId,Colour::fromRGB(255, 252, 242));
+		setColour(juce::ComboBox::buttonColourId,Colour::fromRGB(255, 252, 242));
+		setColour(juce::ComboBox::textColourId,Colours::black);
+		setColour(juce::ComboBox::arrowColourId,Colour::fromRGB(37, 36, 34));
 	}
 }

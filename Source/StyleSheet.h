@@ -22,14 +22,8 @@ namespace juce {
 		CustomDial();
 	};
 
-	class CustomProgressBar : public ProgressBar {
+	class CustomCombo:public ComboBox{
 	public:
-		explicit CustomProgressBar(double &progress) : ProgressBar(progress) {
-			setColour(juce::ProgressBar::backgroundColourId, Colour::fromRGB(255, 252, 242));
-			setColour(juce::ProgressBar::foregroundColourId, Colour::fromRGB(235, 94, 40));
-			setStyle(Style::linear);
-
-		}
+		CustomCombo();
 	};
-
 }
