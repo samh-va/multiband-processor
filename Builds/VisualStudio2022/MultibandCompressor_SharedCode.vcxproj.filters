@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="MultibandCompressor\Filter">
+      <UniqueIdentifier>{6B6738C5-9637-FF75-226A-037D94BA35E8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MultibandCompressor\Limiter">
       <UniqueIdentifier>{D943D493-29C9-96B4-E0F2-72E372210194}</UniqueIdentifier>
     </Filter>
@@ -604,6 +607,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Filter\Filter.cpp">
+      <Filter>MultibandCompressor\Filter</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Limiter.cpp">
       <Filter>MultibandCompressor\Limiter</Filter>
     </ClCompile>
@@ -3030,6 +3036,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Filter\Filter.h">
+      <Filter>MultibandCompressor\Filter</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Limiter.h">
       <Filter>MultibandCompressor\Limiter</Filter>
     </ClInclude>

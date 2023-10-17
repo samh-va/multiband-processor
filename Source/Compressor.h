@@ -29,7 +29,7 @@ public:
 private:
     float yn1;
     float alphaat, alphare;
-    float meanTarget = pow(10,-14/20);
+    float meanTarget = pow(float (10),float (-14)/20);
     float makeup;
     float TH, R, Fsamp;
     

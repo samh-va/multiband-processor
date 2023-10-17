@@ -19,7 +19,7 @@ alphare(0)
 float Limiter::Limiting(float xn)
 {
     
-    float xdB = 20*log10(abs(xn));
+    float xdB = 20*log10(abs(xn+1e-8));
     float xg,yg,xl,yl = 0;
     
     
@@ -57,7 +57,7 @@ float Limiter::Limiting(float xn)
     yn1 = yl;
     
     
-    float c = pow(10,(-yl/20));
+    float c = pow(float (10),float (-yl)/20);
 
     return (xn * c);
 }

@@ -8,7 +8,6 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-#include "Filter/Filter.h"
 //==============================================================================
 MultibandCompressorAudioProcessor::MultibandCompressorAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -96,61 +95,84 @@ void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int sam
     Fs = AudioProcessor::getSampleRate();
     buffSize = AudioProcessor::getBlockSize();
 
-//    float tamax = 20e-3;
-//    float trmax = 200e-3;
+ 
 
     int buffPDFsize = 80;
+    float Tamax = 100e-3;
+    float Trmax = 200e-3;
+    
+// COMPRESORES ---------------------------------------------------------------------------------------------
+    
+    CompL_L.setTHandR(Tll, Rll,Fs);
+    CompL_L.Tamax=Tamax;
+    CompL_L.Trmax=Trmax;
+    CompHL_L.setTHandR(Tml, Rml,Fs);
+    CompHL_L.Tamax=Tamax;
+    CompHL_L.Trmax=Trmax;
+    CompH_L.setTHandR(Thl, Rhl,Fs);
+    CompH_L.Tamax=Tamax;
+    CompH_L.Trmax=Trmax;
+    
+    
+        //    CompL_R.setTHandR(-4, 5,Fs);
+        //    CompHL_R.setTHandR(-4, 5,Fs);
+        //    CompH_R.setTHandR(-4, 5,Fs);
+    
+    
+// LIMITADORES ---------------------------------------------------------------------------------------------
+    
+    LimitL.setLimiter(-0.1, 0.05e-4, 0.05e-4, Fs);
+        //    LimitR.setLimiter(-0.1, 0.05-4, 0.05-4, Fs);
+    
 
-    CompL.setTHandR(-4, 5,Fs);
-//    CompL.Tamax = tamax;
-//    CompL.Trmax = trmax;
-    LimitL.setLimiter(-0.1, 0.05-4, 0.05-4, Fs);
+// BUFFER CIRCULARES --------------------------------------------------------------------------------------
 
-//    CompR.setTHandR(-4, 5);
-//    CompR.Tamax = tamax;
-//    CompR.Trmax = trmax;
-
-    buffCirL.setBuffSize(buffSize);
-    buffPDF_L.setbuffSizePDF(buffPDFsize);
-
-
-
-    float FS = AudioProcessor::getSampleRate();
-
-    LPFR.setSR(FS);
-    LPFR.setFilterType(2);
+    buffCirL_L.setBuffSize(buffSize);
+    buffCirHL_L.setBuffSize(buffSize);
+    buffCirH_L.setBuffSize(buffSize);
+    
+    buffpdfL_L.setbuffSizePDF(buffPDFsize);
+    buffpdfHL_L.setbuffSizePDF(buffPDFsize);
+    buffpdfH_L.setbuffSizePDF(buffPDFsize);
+    
+    
+//  FILTROS-------------------------------------------------------------------------------------------------
+   
+    LPFR.setSRandFT(Fs, 2);
     LPFR.setFc(300);
-    LPFL.setSR(FS);
-    LPFL.setFilterType(2);
+    
+    LPFL.setSRandFT(Fs, 2);
     LPFL.setFc(300);
-
-    HPFR.setSR(FS);
-    HPFR.setFilterType(1);
-    HPFR.setFc(4000);
-    HPFL.setSR(FS);
-    HPFL.setFilterType(1);
-    HPFL.setFc(4000);
-
-    HPFmL.setSR(FS);
-    HPFmL.setFilterType(1);
+    
+// -------------------------
+    HPFR.setSRandFT(Fs, 1);
+    HPFR.setFc(4e3);
+    
+    HPFL.setSRandFT(Fs, 1);
+    HPFL.setFc(4e3);
+    
+// -------------------------
+    HPFmL.setSRandFT(Fs, 1);
     HPFmL.setFc(300);
-    LPFmL.setSR(FS);
-    LPFmL.setFilterType(2);
-    LPFmL.setFc(4000);
-
-    HPFmR.setSR(FS);
-    HPFmR.setFilterType(1);
+    
+    LPFmL.setSRandFT(Fs, 2);
+    LPFmL.setFc(4e3);
+    
+    HPFmR.setSRandFT(Fs, 1);
     HPFmR.setFc(300);
-    LPFmR.setSR(FS);
-    LPFmR.setFilterType(2);
-    LPFmR.setFc(4000);
-
-    APFR.setSR(FS);
-    APFR.setFilterType(3);
+   
+    LPFmR.setSRandFT(Fs, 2);
+    LPFmR.setFc(4e3);
+    
+// --------------------------
+    APFR.setSRandFT(Fs, 3);
     APFR.setFc(4e3);
-    APFL.setSR(FS);
-    APFL.setFilterType(3);
+    
+    APFL.setSRandFT(Fs, 3);
     APFL.setFc(4e3);
+    
+    APFhL.setSRandFT(Fs, 3);
+    APFhL.setFc(4e3);
 }
 
 void MultibandCompressorAudioProcessor::releaseResources()
@@ -211,94 +233,76 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
         for (int channel = 0; channel < totalNumInputChannels; ++channel)
         {
             auto* channelData = buffer.getWritePointer(channel);
-            float samp = channelData[sample];
+            float inSamp = channelData[sample];
 
             if (channel == 0)
             {
+                firstPL = LPFL.processSample(APFL.processSample(inSamp));
+                secondPL = HPFmL.processSample(LPFmL.processSample(inSamp));
+                thirdPL = APFhL.processSample(HPFL.processSample(inSamp));
 
-
-                buffCirL.setSample(samp);
-                auto deltaL = buffCirL.getdeltaRMS();
-                if(buffCirL.getupdateRMS())
+                buffCirL_L.setSample(firstPL);
+                auto deltaL = buffCirL_L.getdeltaRMS();
+                if(buffCirL_L.getupdateRMS())
                 {
-                    auto rmsL = buffCirL.getRMS();
-                    buffPDF_L.setPDF(rmsL);
-                    if (buffPDF_L.getFlag())
+                    auto rmsL = buffCirL_L.getRMS();
+                    buffpdfL_L.setPDF(rmsL);
+                    if (buffpdfL_L.getFlag())
                     {
-                        auto meanY_L = buffPDF_L.getMedia();
-                        CompL.calculateMakeUp(meanY_L);
+                        auto meanL = buffpdfL_L.getMedia();
+                        CompL_L.calculateMakeUp(meanL);
+                    }
+                }
+//
+                buffCirHL_L.setSample(secondPL);
+                auto deltaHL = buffCirHL_L.getdeltaRMS();
+                if(buffCirHL_L.getupdateRMS())
+                {
+                    auto rmsHL = buffCirHL_L.getRMS();
+                    buffpdfHL_L.setPDF(rmsHL);
+                    if (buffpdfHL_L.getFlag())
+                    {
+                        auto meanHL = buffpdfHL_L.getMedia();
+                        CompHL_L.calculateMakeUp(meanHL);
                     }
                 }
 
-                float sampOne = buffCirL.getSample();
+                buffCirH_L.setSample(thirdPL);
+                auto deltaH = buffCirH_L.getdeltaRMS();
+                if(buffCirH_L.getupdateRMS())
+                {
+                    auto rmsH = buffCirH_L.getRMS();
+                    buffpdfH_L.setPDF(rmsH);
+                    if (buffpdfH_L.getFlag())
+                    {
+                        auto meanH = buffpdfH_L.getMedia();
+                        CompH_L.calculateMakeUp(meanH);
+                    }
+                }
 
-                auto outSamp = CompL.Compressing(sampOne, deltaL);
+                auto outL = CompL_L.Compressing(buffCirL_L.getSample(), deltaL);
+                auto outHL = CompHL_L.Compressing(buffCirHL_L.getSample(), deltaHL);
+                auto outH = CompH_L.Compressing(buffCirH_L.getSample(), deltaH);
 
-                channelData[sample]=LimitL.Limiting(outSamp);
+                channelData[sample] = LimitL.Limiting(outL - outHL + outH);
             }
 
             else if (channel == 1)
             {
-//                float outsampR = CompR.Compressing(samp, 0, Fs);
-
-                channelData[sample]=samp;
+                firstPR = LPFR.processSample(APFR.processSample(inSamp));
+                secondPR = HPFmR.processSample(LPFmR.processSample(inSamp));
+                thirdPR = HPFR.processSample(inSamp);
+                
+                
+                channelData[sample]=firstPR-secondPR+thirdPR;
             }
 
 
 
 
         }
-    }
-	// This is the place where you'd normally do the guts of your plugin's
-	// audio processing...
-	// Make sure to reset the state if your inner loop is processing
-	// the samples and the outer loop is handling the channels.
-	// Alternatively, you can process the samples with the channels
-	// interleaved by keeping the same state.
-
-	for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
-	{
-		for (int channel = 0; channel < totalNumInputChannels; ++channel)
-		{
-			auto* channelData = buffer.getWritePointer(channel);
-
-			float samp = channelData[sample];
-			if (channel == 0)
-			{
-				//LPFL.setFc(Freq1);
-				//HPFL.setFc(Freq2);
-				//HPFmL.setFc(Freq1);
-				//LPFmL.setFc(Freq2);
-				//APFL.setFc(Freq2);
-
-				firstPL = LPFL.processSample(APFL.processSample(samp));
-				secondPL = HPFmL.processSample(LPFmL.processSample(samp));
-				thirdPL = HPFL.processSample(samp);
-
-
-				float outsampL = firstPL - secondPL + thirdPL;
-				channelData[sample] = outsampL;
-
-			}
-			else if (channel == 1)
-			{
-				/*  LPFR.setFc(Freq1);
-				  HPFR.setFc(Freq2);
-				  HPFmR.setFc(Freq1);
-				  LPFmR.setFc(Freq2);
-				  APFR.setFc(Freq2);*/
-
-				firstPR = LPFR.processSample(APFR.processSample(samp));
-				secondPR = HPFmR.processSample(LPFmR.processSample(samp));
-				thirdPR = HPFR.processSample(samp);
-
-				float outsampR = firstPR - secondPR + thirdPR;
-				channelData[sample] = outsampR;
-			}
-
-
-
-		}
+    
+	
 	}
 }
 

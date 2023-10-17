@@ -4,6 +4,10 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{5B914FA3-A7DA-4EE2-4578-AFD70BFA7E4A}" name="Filter">
+      <FILE id="ryzEtB" name="Filter.cpp" compile="1" resource="0" file="Source/Filter/Filter.cpp"/>
+      <FILE id="tzZQsw" name="Filter.h" compile="0" resource="0" file="Source/Filter/Filter.h"/>
+    </GROUP>
     <GROUP id="{A59A3F5B-0A43-6FD3-B06F-1C3B458A5366}" name="Limiter">
       <FILE id="FUanqD" name="Limiter.cpp" compile="1" resource="0" file="Source/Limiter.cpp"/>
       <FILE id="ZpU6Dd" name="Limiter.h" compile="0" resource="0" file="Source/Limiter.h"/>

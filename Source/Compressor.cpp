@@ -22,7 +22,7 @@ float Compressor::Compressing(float xn, double delta)
 {
     
     Autoballistic(delta);
-    float xdB = 20*log10(abs(xn));
+    float xdB = 20*log10(abs(xn+1e-8));
     float xg,yg,xl,yl = 0;
     
     
@@ -39,7 +39,7 @@ float Compressor::Compressing(float xn, double delta)
 
     if (xg >= TH)
     {
-        yg = TH + (xg - TH)*(1 - (1/R));
+        yg = TH + (xg - TH)*(1-(1/R));
     }
     else
     {
@@ -65,16 +65,23 @@ float Compressor::Compressing(float xn, double delta)
 //%             Md=-obj.TH*(1-(1/obj.R));
 //%             Mu = 10^(Md/20);
 
-    float Mu = pow(10,(makeup/20));
-    float c = pow(10,(-yl/20));
+    float Mu = pow(float (10),float (makeup)/20);
+    float c = pow(float (10),float (-yl)/20);
 
     return (xn * c)*Mu;
 }
 
 void Compressor::Autoballistic(double delta)
-{
-    float attackTime = Tamax*(1-(2 * std::max(0.0, delta))); //Tamax y Trmax LO MODIFICA EL USUARIO
-    float releaseTime = Trmax*(1+(2 * std::min(0.0, delta)));
+{   float absDelta = abs(delta);
+    float maxDelta = 0.5;
+    
+    if (absDelta > maxDelta)
+    {
+        delta = maxDelta*absDelta/delta;
+    }
+    
+    float attackTime = Tamax*(1-(2 * float (std::max(0.0, delta)))); //Tamax y Trmax LO MODIFICA EL USUARIO
+    float releaseTime = Trmax*(1+(2 * float (std::min(0.0, delta))));
 
     alphaat = exp(-1/(1e-3 * Fsamp * attackTime));
     alphare = exp(-1/(1e-3 * Fsamp * releaseTime));
@@ -82,7 +89,7 @@ void Compressor::Autoballistic(double delta)
 
 void Compressor::calculateMakeUp(float valuein)
 {
-    double Md = 9; // SE MODIFICA EN LA INTERFAZ GRÁFICA
+    double Md = 1; // SE MODIFICA EN LA INTERFAZ GRÁFICA
     makeup = Md * (1 - (valuein / meanTarget));
     
     // Limitar el valor de makeup

@@ -43,6 +43,7 @@
 		632EB593139D92EBEF845A1A /* include_juce_events.mm */ = {isa = PBXBuildFile; fileRef = DB382F56799A35E8B0687250; };
 		6478E03914F6C6AB60A55497 /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = F05AAAACF9038F11BE28C084; };
 		65CFA64A150D651937138EDD /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = EC5EF37A6D8059EB0723DCC4; };
+		6805664F28C70B634D098AC9 /* Filter.cpp */ = {isa = PBXBuildFile; fileRef = 745C9CD5EC782D4AFD442375; };
 		790AC1E351A6D85D9329458A /* Limiter.cpp */ = {isa = PBXBuildFile; fileRef = AFA6D7F4CA74F66F09DC6F03; };
 		8D816086219B18DFA5ED658C /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = FB384DB2E1A7C5430402E5B6; };
 		95E2FF16C5ECE02024F2B9E1 /* Security.framework */ = {isa = PBXBuildFile; fileRef = A26D623465667D4DD4C94C81; };
@@ -92,6 +93,7 @@
 		675CFC2862739466EB2679EE /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
 		677864B6F4A49D2503687D18 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		6DD69EAC9AB4A933E2DF0CB9 /* Compressor.cpp */ /* Compressor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Compressor.cpp; path = ../../Source/Compressor.cpp; sourceTree = SOURCE_ROOT; };
+		745C9CD5EC782D4AFD442375 /* Filter.cpp */ /* Filter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Filter.cpp; path = ../../Source/Filter/Filter.cpp; sourceTree = SOURCE_ROOT; };
 		77BB5828A980C14037D21FEF /* juce_VST3ManifestHelper.mm */ /* juce_VST3ManifestHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_VST3ManifestHelper.mm; path = /Users/samuva/Downloads/JUCE/modules/juce_audio_plugin_client/VST3/juce_VST3ManifestHelper.mm; sourceTree = "<absolute>"; };
 		79350F5193EBAA32E22524C5 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		7B45A94E42A1C16A30EA7ED9 /* Info-VST3_Manifest_Helper.plist */ /* Info-VST3_Manifest_Helper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3_Manifest_Helper.plist"; path = "Info-VST3_Manifest_Helper.plist"; sourceTree = SOURCE_ROOT; };
@@ -118,6 +120,7 @@
 		AFA6D7F4CA74F66F09DC6F03 /* Limiter.cpp */ /* Limiter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Limiter.cpp; path = ../../Source/Limiter.cpp; sourceTree = SOURCE_ROOT; };
 		B27D023B2ECED8BA295D6EF2 /* PDF_CirBuffer.h */ /* PDF_CirBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PDF_CirBuffer.h; path = ../../Source/PDF_CirBuffer.h; sourceTree = SOURCE_ROOT; };
 		B7FE4EAA9998F37BD2BCF690 /* Accelerate.framework */ /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C0C57329E92972D7D058CAF8 /* Filter.h */ /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Filter.h; path = ../../Source/Filter/Filter.h; sourceTree = SOURCE_ROOT; };
 		C27593B20C43DC0C7E9CEF8B /* include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
 		C6C0430AF91A04FDB1CE1C0E /* AU */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultibandCompressor.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9919FA42B29F9E7920604A /* PluginEditor.cpp */ /* PluginEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginEditor.cpp; path = ../../Source/PluginEditor.cpp; sourceTree = SOURCE_ROOT; };
@@ -273,6 +276,7 @@
 		2FE2860627378CC9D4CC0E58 /* MultibandCompressor */ = {
 			isa = PBXGroup;
 			children = (
+				521E626B44627DAE6FAD6BA7,
 				6545A5AA6DD0A7D5A0FDC816,
 				CEE0CCA57BD4638725DFB160,
 				2229E5BB179EA9334EBADF3E,
@@ -292,6 +296,15 @@
 				876B35D6BB8FB38FF0031EFC,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		521E626B44627DAE6FAD6BA7 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				745C9CD5EC782D4AFD442375,
+				C0C57329E92972D7D058CAF8,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		6545A5AA6DD0A7D5A0FDC816 /* Limiter */ = {
@@ -701,6 +714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6805664F28C70B634D098AC9,
 				790AC1E351A6D85D9329458A,
 				62E618E97B5274936E21210A,
 				D6C093BDA83D0040B6C504E5,

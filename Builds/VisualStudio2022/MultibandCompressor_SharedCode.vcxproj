@@ -139,6 +139,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Filter\Filter.cpp"/>
     <ClCompile Include="..\..\Source\Limiter.cpp"/>
     <ClCompile Include="..\..\Source\PDF_CirBuffer.cpp"/>
     <ClCompile Include="..\..\Source\CirBuffer.cpp"/>
@@ -2391,6 +2392,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Filter\Filter.h"/>
     <ClInclude Include="..\..\Source\Limiter.h"/>
     <ClInclude Include="..\..\Source\PDF_CirBuffer.h"/>
     <ClInclude Include="..\..\Source\CirBuffer.h"/>

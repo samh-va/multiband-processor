@@ -24,5 +24,5 @@ public:
 private:
     float yn1;
     float alphaat, alphare;
-    float TH, R;
+    float TH;
 };

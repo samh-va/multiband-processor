@@ -8,12 +8,13 @@
 
 #pragma once
 
-#include "Filter/Filter.h"
+
 #include <JuceHeader.h>
 #include "Compressor.h"
 #include "PDF_CirBuffer.h"
 #include "CirBuffer.h"
 #include "Limiter.h"
+#include "Filter/Filter.h"
 //==============================================================================
 /**
 */
@@ -63,22 +64,59 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultibandCompressorAudioProcessor)
+
+// Limitadores  ----------------------------------------------------------------------
+    
     Limiter LimitL;
-    Compressor CompL;
-    CirBuffer buffCirL;
-    CirPDF buffPDF_L;
+        //Limiter LimitR;
+    
+// Compresores  ----------------------------------------------------------------------
+    
+    Compressor CompL_L;
+    Compressor CompHL_L;
+    Compressor CompH_L;
+        //Compressor CompL_R, CompHL_R, CompH_R;
+    
+// Buffer Circulares  ----------------------------------------------------------------------
+   
+    CirBuffer buffCirL_L;
+    CirBuffer buffCirHL_L;
+    CirBuffer buffCirH_L ;
+        //CirBuffer buffCirL_R, buffCirHL_R, buffCirH_R ;
+    
+    CirPDF buffpdfL_L;
+    CirPDF buffpdfHL_L;
+    CirPDF buffpdfH_L;
+        //CirPDF buffpdfL_R,buffpdfHL_R,buffpdfH_R;
 
-
-
-    juce::AudioFormatManager formatManager;
-    juce::AudioTransportSource transportSource;
-
-    float Fs;
-    float buffSize;
-
-	//==============================================================================
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MultibandCompressorAudioProcessor);
-	float FS;
-	Filter LPFR, LPFL, HPFR, HPFL, HPFmL, LPFmL, HPFmR, LPFmR, APFR, APFL;
-	float firstPR, secondPR, thirdPR, firstPL, secondPL, thirdPL = 0;
+// Filtros --------------------------------------------------------------------------------
+    Filter LPFR;
+    Filter LPFL;
+    Filter HPFR;
+    Filter HPFL;
+    Filter HPFmL;
+    Filter LPFmL;
+    Filter HPFmR;
+    Filter LPFmR;
+    Filter APFR;
+    Filter APFL;
+    Filter APFhL;
+    
+    float firstPR;
+    float secondPR;
+    float thirdPR;
+    float firstPL;
+    float secondPL;
+    float thirdPL;
+    
+// OTROS -----------------------------------------------------------------------------------
+        float Fs;
+        float buffSize;
+    
+    float Thl = -12; //-23;
+    float Rhl = 0.0519852981190975;
+    float Tml = -8;
+    float Rml = 0.517709503697767;
+    float Tll = -12;
+    float Rll = 0.0416596326145323;
 };

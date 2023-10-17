@@ -9,6 +9,7 @@
 */
 
 #include "PDF_CirBuffer.h"
+#include <numeric>
 #include <cmath>
 
 CirPDF::CirPDF():
@@ -30,8 +31,8 @@ void CirPDF::setPDF(float value)
 }
 
 float CirPDF::calculatePDF() {
-    double sum = std::accumulate(buffer.begin(), buffer.end(), 0.0);
-    return sum / bufSize;
+    float sum = std::accumulate(buffer.begin(), buffer.end(), 0.0);
+    return (sum / float(bufSize));
 }
 
 float CirPDF::getMedia() {
@@ -43,3 +44,9 @@ float CirPDF::getMedia() {
         takeMediaOut = false;
         return flag;
     }
+void CirPDF::setbuffSizePDF(int size)
+{
+    buffer.resize(size,0.0);
+    bufSize = size;
+    
+}
