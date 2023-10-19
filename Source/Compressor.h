@@ -22,9 +22,12 @@ public:
     void Autoballistic(double delta);
     void calculateMakeUp(float valuein);
     void setTHandR(float Thresh, float Ratio, float fs);
+    void setARtmax(float at,float rt);
+    void setAutoM(float Auto);
     
-    float Tamax, Trmax;
-
+    float Tamax = 100e-3;
+    float Trmax = 200e-3;
+    float c;
     
 private:
     float yn1;
@@ -32,6 +35,7 @@ private:
     float meanTarget = pow(float (10),float (-14)/20);
     float makeup;
     float TH, R, Fsamp;
+//    float AutoMper=1;
     
 };
 

@@ -61,7 +61,7 @@ float Compressor::Compressing(float xn, double delta)
     
 
     float Mu = pow(float (10),float (makeup)/20);
-    float c = pow(float (10),float (-yl)/20);
+    c = pow(float (10),float (-yl)/20);
 
     return (xn * c)*Mu;
 }
@@ -84,7 +84,7 @@ void Compressor::Autoballistic(double delta)
 
 void Compressor::calculateMakeUp(float valuein)
 {
-    double Md = -TH*(1-(1/R))*0.9; // Se puede variar el porcentaje de cuánto de auto-makeup se quiere
+    double Md = -TH*(1-(1/R)); // Se puede variar el porcentaje de cuánto de auto-makeup se quiere
     makeup = Md * (1 - (valuein / meanTarget));
     
     if(abs(makeup) > Md)
@@ -92,6 +92,17 @@ void Compressor::calculateMakeUp(float valuein)
         makeup = Md * abs(makeup)/makeup;
     }
     
+}
+
+void Compressor::setAutoM(float Auto)
+{
+    makeup = makeup*Auto;
+}
+
+void Compressor::setARtmax(float at, float rt)
+{
+    Tamax = at;
+    Trmax = rt;
 }
 
 void Compressor::setTHandR(float th, float r,float Fs)

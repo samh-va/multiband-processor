@@ -98,31 +98,24 @@ void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int sam
  
 
     int buffPDFsize = 40;
-    float Tamax = 100e-3;
-    float Trmax = 200e-3;
+
     
 // COMPRESORES ---------------------------------------------------------------------------------------------
     
     CompL_L.setTHandR(Tlr, Rlr,Fs);
-    CompL_L.Tamax=Tamax;
-    CompL_L.Trmax=Trmax;                //Se puede variar el Tamax y Trmax
+              
     CompHL_L.setTHandR(Tmr, Rmr,Fs);
-    CompHL_L.Tamax=Tamax;
-    CompHL_L.Trmax=Trmax;
+
     CompH_L.setTHandR(Thr, Rhr,Fs);
-    CompH_L.Tamax=Tamax;
-    CompH_L.Trmax=Trmax;
+
     
     
     CompL_R.setTHandR(Tlr, Rlr,Fs); // POR AHORA SE DEJAN LOS THR Y RATIO DEL LADO L. La idea es cambiar de estados entre esos TH y RT
-    CompL_R.Tamax=Tamax;
-    CompL_R.Trmax=Trmax;
+
     CompHL_R.setTHandR(Tmr, Rmr,Fs);
-    CompHL_R.Tamax=Tamax;
-    CompHL_R.Trmax=Trmax;
+
     CompH_R.setTHandR(Thr, Rhr,Fs);
-    CompH_R.Tamax=Tamax;
-    CompH_R.Trmax=Trmax;
+
     
     
 // LIMITADORES ---------------------------------------------------------------------------------------------
@@ -251,10 +244,10 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
 
             if (channel == 0)
             {
-                firstPL = LPFL.processSample(APFL.processSample(inSamp));
-                secondPL = HPFmL.processSample(LPFmL.processSample(inSamp));
-                thirdPL = HPFL.processSample(inSamp);
-
+                float firstPL = LPFL.processSample(APFL.processSample(inSamp));
+                float secondPL = HPFmL.processSample(LPFmL.processSample(inSamp));
+                float thirdPL = HPFL.processSample(inSamp);
+                
                 buffCirL_L.setSample(firstPL);
                 auto deltaL = buffCirL_L.getdeltaRMS();
                 if(buffCirL_L.getupdateRMS())
@@ -267,7 +260,7 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                         CompL_L.calculateMakeUp(meanL);
                     }
                 }
-
+                
                 buffCirHL_L.setSample(secondPL);
                 auto deltaHL = buffCirHL_L.getdeltaRMS();
                 if(buffCirHL_L.getupdateRMS())
@@ -280,7 +273,7 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                         CompHL_L.calculateMakeUp(meanHL);
                     }
                 }
-//
+                //
                 buffCirH_L.setSample(thirdPL);
                 auto deltaH = buffCirH_L.getdeltaRMS();
                 if(buffCirH_L.getupdateRMS())
@@ -293,19 +286,42 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                         CompH_L.calculateMakeUp(meanH);
                     }
                 }
-
+                
+                CompL_L.setAutoM(AutoMG);
+                CompHL_L.setAutoM(AutoMG);
+                CompH_L.setAutoM(AutoMG);
+                
+                CompL_L.setARtmax(TaMax, TrMax);
+                CompHL_L.setARtmax(TaMax, TrMax);
+                CompH_L.setARtmax(TaMax, TrMax);
+                
+                
+                
                 auto outL = CompL_L.Compressing(buffCirL_L.getSample(), deltaL);
                 auto outHL = CompHL_L.Compressing(buffCirHL_L.getSample(), deltaHL);
                 auto outH = CompH_L.Compressing(buffCirH_L.getSample(), deltaH);
-
+                
                 channelData[sample] = LimitL.Limiting(outL-outHL+outH);
+                
+                grL = CompL_L.c;
+                grM = CompHL_L.c;
+                grH = CompHL_L.c;
+                
+                outLow = outL;
+                outMid = outHL;
+                outHigh = outH;
+                
+                inL = firstPL;
+                inM = secondPL;
+                inH = thirdPL;
+   
             }
 
             else if (channel == 1)
             {
-                firstPR = LPFR.processSample(APFR.processSample(inSamp));
-                secondPR = HPFmR.processSample(LPFmR.processSample(inSamp));
-                thirdPR = HPFR.processSample(inSamp);
+                float firstPR = LPFR.processSample(APFR.processSample(inSamp));
+                float secondPR = HPFmR.processSample(LPFmR.processSample(inSamp));
+                float thirdPR = HPFR.processSample(inSamp);
                 
                 buffCirL_R.setSample(firstPR);
                 auto deltaL = buffCirL_R.getdeltaRMS();
@@ -346,6 +362,14 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                     }
                 }
 
+                CompL_R.setAutoM(AutoMG);
+                CompHL_R.setAutoM(AutoMG);
+                CompH_R.setAutoM(AutoMG);
+                
+                CompL_R.setARtmax(TaMax, TrMax);
+                CompHL_R.setARtmax(TaMax, TrMax);
+                CompH_R.setARtmax(TaMax, TrMax);
+                
                 auto outL = CompL_R.Compressing(buffCirL_R.getSample(), deltaL);
                 auto outHL = CompHL_R.Compressing(buffCirHL_R.getSample(), deltaHL);
                 auto outH = CompH_R.Compressing(buffCirH_R.getSample(), deltaH);

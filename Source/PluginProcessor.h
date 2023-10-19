@@ -60,6 +60,27 @@ public:
 	//==============================================================================
 	void getStateInformation(juce::MemoryBlock& destData) override;
 	void setStateInformation(const void* data, int sizeInBytes) override;
+    
+    float grL;
+    float grM;
+    float grH;
+    
+    float inL;
+    float inM;
+    float inH;
+    
+    float outLow;
+    float outMid;
+    float outHigh;
+    
+//    float inR;
+//    float grR;
+//    float outR;
+    float TaMax;
+    float TrMax;
+    
+    
+    float AutoMG;
 
 private:
     //==============================================================================
@@ -80,7 +101,7 @@ private:
     Compressor CompHL_R;
     Compressor CompH_R;
     
-// Buffer Circulares  ----------------------------------------------------------------------
+// Buffer Circulares  ----------------------------------------------------------------
    
     CirBuffer buffCirL_L;
     CirBuffer buffCirHL_L;
@@ -112,12 +133,12 @@ private:
     Filter APFR;
     Filter APFL;
     
-    float firstPR;
-    float secondPR;
-    float thirdPR;
-    float firstPL;
-    float secondPL;
-    float thirdPL;
+//    float firstPR;
+//    float secondPR;
+//    float thirdPR;
+//    float firstPL;
+//    float secondPL;
+//    float thirdPL;
     
 // OTROS -----------------------------------------------------------------------------------
         float Fs;
@@ -141,4 +162,5 @@ private:
 
     float Rmr = 164.248089526385;
     float Tmr = -16;
+    
 };
