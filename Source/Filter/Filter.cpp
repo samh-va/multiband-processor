@@ -9,13 +9,15 @@ Filter::Filter() :
 	yn1(0), yn2(0)
 {}
 
-void Filter::setSRandFT(float nSampleRate, int fType)
+void Filter::setSR(float nSampleRate)
 {
 	sampleRate = nSampleRate;
-    filterType = fType;
 }
 
-
+void Filter::setFilterType(int nFilterType)
+{
+	filterType = nFilterType;
+}
 
 void Filter::calCoeffHPF()
 {
