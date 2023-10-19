@@ -4,6 +4,11 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{596BBF19-8DD4-213B-5EDF-31C694BDAA00}" name="UI">
+      <FILE id="iCnTQ4" name="StyleSheet.cpp" compile="1" resource="0" file="Source/StyleSheet.cpp"/>
+      <FILE id="T8hlFH" name="StyleSheet.h" compile="0" resource="0" file="Source/StyleSheet.h"/>
+      <FILE id="btRGIF" name="VerticalMeter.h" compile="0" resource="0" file="Source/VerticalMeter.h"/>
+    </GROUP>
     <GROUP id="{5B914FA3-A7DA-4EE2-4578-AFD70BFA7E4A}" name="Filter">
       <FILE id="ryzEtB" name="Filter.cpp" compile="1" resource="0" file="Source/Filter/Filter.cpp"/>
       <FILE id="tzZQsw" name="Filter.h" compile="0" resource="0" file="Source/Filter/Filter.h"/>
