@@ -139,10 +139,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\CompressorPanel.cpp"/>
-    <ClCompile Include="..\..\Source\CustomDial.cpp"/>
-    <ClCompile Include="..\..\Source\CustomDropdown.cpp"/>
-    <ClCompile Include="..\..\Source\CustomProgressBar.cpp"/>
     <ClCompile Include="..\..\Source\StyleSheet.cpp"/>
     <ClCompile Include="..\..\Source\VerticalMeter.cpp"/>
     <ClCompile Include="..\..\Source\Filter\Filter.cpp"/>
@@ -2374,7 +2370,6 @@
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -2395,10 +2390,6 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\CompressorPanel.h"/>
-    <ClInclude Include="..\..\Source\CustomDial.h"/>
-    <ClInclude Include="..\..\Source\CustomDropdown.h"/>
-    <ClInclude Include="..\..\Source\CustomProgressBar.h"/>
     <ClInclude Include="..\..\Source\StyleSheet.h"/>
     <ClInclude Include="..\..\Source\VerticalMeter.h"/>
     <ClInclude Include="..\..\Source\Filter\Filter.h"/>
@@ -3344,12 +3335,10 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\misc\juce_WebBrowserComponent.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\native\juce_NSViewFrameWatcher_mac.h"/>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
-    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JucePluginDefines.h"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\Music\Assets\MeterGrill.png"/>
     <None Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\native\oboe\README.md"/>
     <None Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

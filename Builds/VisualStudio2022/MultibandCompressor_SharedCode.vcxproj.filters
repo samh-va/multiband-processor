@@ -2,9 +2,6 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="MultibandCompressor\Assets">
-      <UniqueIdentifier>{3F8EB8FA-73D1-1E1A-C455-831C6B20D670}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MultibandCompressor\UI">
       <UniqueIdentifier>{F43FF60B-F2A3-EA9D-664B-B342077BAB16}</UniqueIdentifier>
     </Filter>
@@ -601,18 +598,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\CompressorPanel.cpp">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\CustomDial.cpp">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\CustomDropdown.cpp">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\CustomProgressBar.cpp">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\StyleSheet.cpp">
       <Filter>MultibandCompressor\UI</Filter>
     </ClCompile>
@@ -2992,9 +2977,6 @@
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
-      <Filter>JUCE Library Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -3039,18 +3021,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\CompressorPanel.h">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\CustomDial.h">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\CustomDropdown.h">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\CustomProgressBar.h">
-      <Filter>MultibandCompressor\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\StyleSheet.h">
       <Filter>MultibandCompressor\UI</Filter>
     </ClInclude>
@@ -5886,9 +5856,6 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
-      <Filter>JUCE Library Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -5897,9 +5864,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\Music\Assets\MeterGrill.png">
-      <Filter>MultibandCompressor\Assets</Filter>
-    </None>
     <None Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>
