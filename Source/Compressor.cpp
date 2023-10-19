@@ -39,7 +39,7 @@ float Compressor::Compressing(float xn, double delta)
 
     if (xg >= TH)
     {
-        yg = TH + (xg - TH)*(1-(1/R));
+        yg = TH + (xg - TH)*(1/R);
     }
     else
     {
@@ -59,11 +59,6 @@ float Compressor::Compressing(float xn, double delta)
     }
     yn1 = yl;
     
-    
-
-//%              MAKE UP GAIN
-//%             Md=-obj.TH*(1-(1/obj.R));
-//%             Mu = 10^(Md/20);
 
     float Mu = pow(float (10),float (makeup)/20);
     float c = pow(float (10),float (-yl)/20);
@@ -89,14 +84,14 @@ void Compressor::Autoballistic(double delta)
 
 void Compressor::calculateMakeUp(float valuein)
 {
-    double Md = 1; // SE MODIFICA EN LA INTERFAZ GRÁFICA
+    double Md = -TH*(1-(1/R))*0.9; // Se puede variar el porcentaje de cuánto de auto-makeup se quiere
     makeup = Md * (1 - (valuein / meanTarget));
     
-    // Limitar el valor de makeup
-    if (makeup < -Md)
+    if(abs(makeup) > Md)
     {
-        makeup = -Md;
+        makeup = Md * abs(makeup)/makeup;
     }
+    
 }
 
 void Compressor::setTHandR(float th, float r,float Fs)

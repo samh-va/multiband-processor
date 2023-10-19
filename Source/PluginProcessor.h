@@ -68,26 +68,37 @@ private:
 // Limitadores  ----------------------------------------------------------------------
     
     Limiter LimitL;
-        //Limiter LimitR;
+    Limiter LimitR;
     
 // Compresores  ----------------------------------------------------------------------
     
     Compressor CompL_L;
     Compressor CompHL_L;
     Compressor CompH_L;
-        //Compressor CompL_R, CompHL_R, CompH_R;
+    
+    Compressor CompL_R;
+    Compressor CompHL_R;
+    Compressor CompH_R;
     
 // Buffer Circulares  ----------------------------------------------------------------------
    
     CirBuffer buffCirL_L;
     CirBuffer buffCirHL_L;
-    CirBuffer buffCirH_L ;
-        //CirBuffer buffCirL_R, buffCirHL_R, buffCirH_R ;
+    CirBuffer buffCirH_L;
+    
+    CirBuffer buffCirL_R;
+    CirBuffer buffCirHL_R;
+    CirBuffer buffCirH_R;
+    
+    
     
     CirPDF buffpdfL_L;
     CirPDF buffpdfHL_L;
     CirPDF buffpdfH_L;
-        //CirPDF buffpdfL_R,buffpdfHL_R,buffpdfH_R;
+    
+    CirPDF buffpdfL_R;
+    CirPDF buffpdfHL_R;
+    CirPDF buffpdfH_R;
 
 // Filtros --------------------------------------------------------------------------------
     Filter LPFR;
@@ -100,7 +111,6 @@ private:
     Filter LPFmR;
     Filter APFR;
     Filter APFL;
-    Filter APFhL;
     
     float firstPR;
     float secondPR;
@@ -113,10 +123,22 @@ private:
         float Fs;
         float buffSize;
     
-    float Thl = -12; //-23;
-    float Rhl = 0.0519852981190975;
-    float Tml = -8;
-    float Rml = 0.517709503697767;
-    float Tll = -12;
-    float Rll = 0.0416596326145323;
+    float Rhl = 1.21496449059066;
+    float Thl = -27;
+
+    float Rll = 1.79346916291038;
+    float Tll = -14;
+
+    float Rml = 23.4508335553063;
+    float Tml = -17;
+    
+// --------------------------------
+    float Rhr = 2.42445105959837;
+    float Thr = -33;
+
+    float Rlr = 19.8281739707482;
+    float Tlr = -15;
+
+    float Rmr = 164.248089526385;
+    float Tmr = -16;
 };
