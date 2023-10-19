@@ -1,6 +1,6 @@
+#pragma once
 #include "JuceHeader.h"
 #include <cmath>
-#pragma once
 
 class Filter
 {

@@ -2,6 +2,12 @@
 
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="MultibandCompressor\Assets">
+      <UniqueIdentifier>{3F8EB8FA-73D1-1E1A-C455-831C6B20D670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultibandCompressor\UI">
+      <UniqueIdentifier>{F43FF60B-F2A3-EA9D-664B-B342077BAB16}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MultibandCompressor\Filter">
       <UniqueIdentifier>{6B6738C5-9637-FF75-226A-037D94BA35E8}</UniqueIdentifier>
     </Filter>
@@ -595,6 +601,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\CompressorPanel.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomDial.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomDropdown.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CustomProgressBar.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\StyleSheet.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\VerticalMeter.cpp">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Filter\Filter.cpp">
       <Filter>MultibandCompressor\Filter</Filter>
     </ClCompile>
@@ -2968,6 +2992,9 @@
     <ClCompile Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -3012,6 +3039,24 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CompressorPanel.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomDial.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomDropdown.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomProgressBar.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\StyleSheet.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\VerticalMeter.h">
+      <Filter>MultibandCompressor\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Filter\Filter.h">
       <Filter>MultibandCompressor\Filter</Filter>
     </ClInclude>
@@ -3192,7 +3237,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\utilities\juce_SmoothedValue.h">
       <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>JUCE Modules\juce_audio_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h">
@@ -3432,7 +3477,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\sources\juce_AudioTransportSource.h">
       <Filter>JUCE Modules\juce_audio_devices\sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
       <Filter>JUCE Modules\juce_audio_devices</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\all.h">
@@ -3729,7 +3774,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_formats\sampler\juce_Sampler.h">
       <Filter>JUCE Modules\juce_audio_formats\sampler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>JUCE Modules\juce_audio_formats</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_plugin_client\detail\juce_CheckSettingMacros.h">
@@ -3753,7 +3798,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_plugin_client\detail\juce_VSTWindowUtilities.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client.h">
       <Filter>JUCE Modules\juce_audio_plugin_client</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_processors\format\juce_AudioPluginFormat.h">
@@ -4350,7 +4395,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_processors\utilities\juce_VST3ClientExtensions.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
       <Filter>JUCE Modules\juce_audio_processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_utils\audio_cd\juce_AudioCDBurner.h">
@@ -4395,7 +4440,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_utils\players\juce_SoundPlayer.h">
       <Filter>JUCE Modules\juce_audio_utils\players</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
       <Filter>JUCE Modules\juce_audio_utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_core\containers\juce_AbstractFifo.h">
@@ -4848,7 +4893,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_core\zip\juce_ZipFile.h">
       <Filter>JUCE Modules\juce_core\zip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_core\juce_core.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_core\juce_core.h">
       <Filter>JUCE Modules\juce_core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h">
@@ -4878,7 +4923,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h">
       <Filter>JUCE Modules\juce_data_structures\values</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_data_structures\juce_data_structures.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_data_structures\juce_data_structures.h">
       <Filter>JUCE Modules\juce_data_structures</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_events\broadcasters\juce_ActionBroadcaster.h">
@@ -4965,7 +5010,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_events\timers\juce_Timer.h">
       <Filter>JUCE Modules\juce_events\timers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_events\juce_events.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_events\juce_events.h">
       <Filter>JUCE Modules\juce_events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_graphics\colour\juce_Colour.h">
@@ -5145,7 +5190,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_graphics\placement\juce_RectanglePlacement.h">
       <Filter>JUCE Modules\juce_graphics\placement</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_graphics\juce_graphics.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_graphics\juce_graphics.h">
       <Filter>JUCE Modules\juce_graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_basics\accessibility\enums\juce_AccessibilityActions.h">
@@ -5754,7 +5799,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_basics\windows\juce_WindowUtils.h">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
       <Filter>JUCE Modules\juce_gui_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\code_editor\juce_CodeDocument.h">
@@ -5838,8 +5883,11 @@
     <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\native\juce_NSViewFrameWatcher_mac.h">
       <Filter>JUCE Modules\juce_gui_extra\native</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
+    <ClInclude Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
@@ -5849,6 +5897,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\Music\Assets\MeterGrill.png">
+      <Filter>MultibandCompressor\Assets</Filter>
+    </None>
     <None Include="..\..\..\..\..\Downloads\juce-7.0.7-windows\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>

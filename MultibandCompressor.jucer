@@ -4,6 +4,30 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{46E8C43A-7BC1-7109-E6D9-D60DBA3EDEB4}" name="Assets">
+      <FILE id="B3X4Yj" name="MeterGrill.png" compile="0" resource="1" file="../../../Music/Assets/MeterGrill.png"/>
+    </GROUP>
+    <GROUP id="{C3902943-89F0-764D-98BA-F819932F035E}" name="UI">
+      <FILE id="jxfZ1l" name="CompressorPanel.h" compile="0" resource="0"
+            file="Source/CompressorPanel.h"/>
+      <FILE id="rVoGQo" name="CompressorPanel.cpp" compile="1" resource="0"
+            file="Source/CompressorPanel.cpp"/>
+      <FILE id="ne6JF5" name="CustomDial.cpp" compile="1" resource="0" file="Source/CustomDial.cpp"/>
+      <FILE id="tRcEIK" name="CustomDial.h" compile="0" resource="0" file="Source/CustomDial.h"/>
+      <FILE id="gH9s2k" name="CustomDropdown.cpp" compile="1" resource="0"
+            file="Source/CustomDropdown.cpp"/>
+      <FILE id="DT7PoX" name="CustomDropdown.h" compile="0" resource="0"
+            file="Source/CustomDropdown.h"/>
+      <FILE id="gOqLs8" name="CustomProgressBar.cpp" compile="1" resource="0"
+            file="Source/CustomProgressBar.cpp"/>
+      <FILE id="qsfQba" name="CustomProgressBar.h" compile="0" resource="0"
+            file="Source/CustomProgressBar.h"/>
+      <FILE id="c3iSAr" name="StyleSheet.cpp" compile="1" resource="0" file="Source/StyleSheet.cpp"/>
+      <FILE id="qJ7vz6" name="StyleSheet.h" compile="0" resource="0" file="Source/StyleSheet.h"/>
+      <FILE id="NvlJ8t" name="VerticalMeter.cpp" compile="1" resource="0"
+            file="Source/VerticalMeter.cpp"/>
+      <FILE id="nRHGns" name="VerticalMeter.h" compile="0" resource="0" file="Source/VerticalMeter.h"/>
+    </GROUP>
     <GROUP id="{4F45C597-300C-CFB7-40AB-1B4D36AF1C0F}" name="Filter">
       <FILE id="hybhH0" name="Filter.cpp" compile="1" resource="0" file="Source/Filter/Filter.cpp"/>
       <FILE id="hljvfQ" name="Filter.h" compile="0" resource="0" file="Source/Filter/Filter.h"/>
