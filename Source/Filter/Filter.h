@@ -7,8 +7,7 @@ class Filter
 public:
     Filter();
     void setFc(float nFc);
-    void setSR(float nSampleRate);
-    void setFilterType(int filterType);
+    void setSRandFT(float nSampleRate, int fType);
     float processSample(float xn);
 
     void calCoeffHPF();

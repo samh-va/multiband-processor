@@ -4,6 +4,22 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
               jucerFormatVersion="1">
   <MAINGROUP id="ZQs6QO" name="MultibandCompressor">
+    <GROUP id="{A59A3F5B-0A43-6FD3-B06F-1C3B458A5366}" name="Limiter">
+      <FILE id="FUanqD" name="Limiter.cpp" compile="1" resource="0" file="Source/Limiter.cpp"/>
+      <FILE id="ZpU6Dd" name="Limiter.h" compile="0" resource="0" file="Source/Limiter.h"/>
+    </GROUP>
+    <GROUP id="{0E28F30D-744E-F7AD-37C6-F89B7B4192F6}" name="PDF Circular Buffer">
+      <FILE id="jHHk9H" name="PDF_CirBuffer.cpp" compile="1" resource="0"
+            file="Source/PDF_CirBuffer.cpp"/>
+      <FILE id="V1JaFN" name="PDF_CirBuffer.h" compile="0" resource="0" file="Source/PDF_CirBuffer.h"/>
+    </GROUP>
+    <GROUP id="{C3902943-89F0-764D-98BA-F819932F035E}" name="Circular Buffer">
+      <FILE id="A6Sp6R" name="CirBuffer.cpp" compile="1" resource="0" file="Source/CirBuffer.cpp"/>
+      <FILE id="pAJzVn" name="CirBuffer.h" compile="0" resource="0" file="Source/CirBuffer.h"/>
+    </GROUP>
+    <GROUP id="{30F855ED-3FC5-4637-6B5B-F0E067C308D7}" name="Compressor">
+      <FILE id="GiW5uF" name="Compressor.cpp" compile="1" resource="0" file="Source/Compressor.cpp"/>
+      <FILE id="aJVqf8" name="Compressor.h" compile="0" resource="0" file="Source/Compressor.h"/>
     <GROUP id="{46E8C43A-7BC1-7109-E6D9-D60DBA3EDEB4}" name="Assets">
       <FILE id="B3X4Yj" name="MeterGrill.png" compile="0" resource="1" file="../../../Music/Assets/MeterGrill.png"/>
     </GROUP>
@@ -43,19 +59,19 @@
     </GROUP>
   </MAINGROUP>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
-            useGlobalPath="0"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
@@ -65,18 +81,18 @@
         <CONFIGURATION isDebug="0" name="Release" targetName="MultibandCompressor"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_utils" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../Downloads/juce-7.0.7-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../Downloads/JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX">
@@ -85,18 +101,18 @@
         <CONFIGURATION isDebug="0" name="Release" targetName="MultibandCompressor"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_utils" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../Downloads/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../Downloads/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
