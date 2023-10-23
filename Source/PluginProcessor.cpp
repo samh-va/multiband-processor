@@ -103,20 +103,14 @@ void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int sam
 // COMPRESORES ---------------------------------------------------------------------------------------------
     
     CompL_L.setTHandR(Tlr, Rlr,Fs);
-              
     CompHL_L.setTHandR(Tmr, Rmr,Fs);
-
     CompH_L.setTHandR(Thr, Rhr,Fs);
 
     
-    
     CompL_R.setTHandR(Tlr, Rlr,Fs); // POR AHORA SE DEJAN LOS THR Y RATIO DEL LADO L. La idea es cambiar de estados entre esos TH y RT
-
     CompHL_R.setTHandR(Tmr, Rmr,Fs);
-
     CompH_R.setTHandR(Thr, Rhr,Fs);
-
-    
+ 
     
 // LIMITADORES ---------------------------------------------------------------------------------------------
     
@@ -287,33 +281,61 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                     }
                 }
                 
-                CompL_L.setAutoM(AutoMG);
-                CompHL_L.setAutoM(AutoMG);
-                CompH_L.setAutoM(AutoMG);
+                CompL_L.setAutoM(AutoMGLow);
+                CompHL_L.setAutoM(AutoMGMid);
+                CompH_L.setAutoM(AutoMGHigh);
                 
-                CompL_L.setARtmax(TaMax, TrMax);
-                CompHL_L.setARtmax(TaMax, TrMax);
-                CompH_L.setARtmax(TaMax, TrMax);
-                
-                
+                CompL_L.setARtmax(TaMaxLow, TrMaxLow);
+                CompHL_L.setARtmax(TaMaxMid, TrMaxMid);
+                CompH_L.setARtmax(TaMaxMid, TrMaxMid);
                 
                 auto outL = CompL_L.Compressing(buffCirL_L.getSample(), deltaL);
                 auto outHL = CompHL_L.Compressing(buffCirHL_L.getSample(), deltaHL);
                 auto outH = CompH_L.Compressing(buffCirH_L.getSample(), deltaH);
                 
+                
+                if (CBvalueL == 1)
+                {
+                    value_low = abs(firstPL);
+                }
+                else if (CBvalueL == 2)
+                {
+                    value_low = abs(1-CompL_L.c);
+                }
+                else if (CBvalueL == 3)
+                {
+                    value_low = abs(outL);
+                }
+                
+                if (CBvalueM == 1)
+                {
+                    value_mid = abs(secondPL);
+                }
+                else if (CBvalueM == 2)
+                {
+                    value_mid = abs(1-CompHL_L.c);
+                }
+                else if (CBvalueM == 3)
+                {
+                    value_mid = abs(outHL);
+                }
+                
+                if (CBvalueH == 1)
+                {
+                    value_high = abs(thirdPL);
+                }
+                else if (CBvalueH == 2)
+                {
+                    value_high = abs(1-CompH_L.c);
+                }
+                else if (CBvalueH == 3)
+                {
+                    value_high = abs(outH);
+                }
+                
                 channelData[sample] = LimitL.Limiting(outL-outHL+outH);
                 
-                grL = CompL_L.c;
-                grM = CompHL_L.c;
-                grH = CompHL_L.c;
-                
-                outLow = outL;
-                outMid = outHL;
-                outHigh = outH;
-                
-                inL = firstPL;
-                inM = secondPL;
-                inH = thirdPL;
+               
    
             }
 
@@ -362,13 +384,13 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                     }
                 }
 
-                CompL_R.setAutoM(AutoMG);
-                CompHL_R.setAutoM(AutoMG);
-                CompH_R.setAutoM(AutoMG);
-                
-                CompL_R.setARtmax(TaMax, TrMax);
-                CompHL_R.setARtmax(TaMax, TrMax);
-                CompH_R.setARtmax(TaMax, TrMax);
+//                CompL_R.setAutoM(AutoMG);
+//                CompHL_R.setAutoM(AutoMG);
+//                CompH_R.setAutoM(AutoMG);
+//                
+//                CompL_R.setARtmax(TaMax, TrMax);
+//                CompHL_R.setARtmax(TaMax, TrMax);
+//                CompH_R.setARtmax(TaMax, TrMax);
                 
                 auto outL = CompL_R.Compressing(buffCirL_R.getSample(), deltaL);
                 auto outHL = CompHL_R.Compressing(buffCirHL_R.getSample(), deltaHL);

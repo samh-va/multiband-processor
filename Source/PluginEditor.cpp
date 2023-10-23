@@ -1,18 +1,17 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-auto levels = 0.2f;
 
 //==============================================================================
 MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor(MultibandCompressorAudioProcessor &p)
-		: AudioProcessorEditor(&p), audioProcessor(p), LowCVerticalMeter([&]() { return levels; }),
-		  HighCVerticalMeter([&]() { return levels; }), BandCVerticalMeter([&]() { return levels; }) {
+		: AudioProcessorEditor(&p), audioProcessor(p), LowCVerticalMeter([&]() { return audioProcessor.value_low ; }),
+		  HighCVerticalMeter([&]() { return audioProcessor.value_high; }), BandCVerticalMeter([&]() { return audioProcessor.value_mid; }) {
 
 	// Make sure that before the constructor has finished, you've set the
 	// editor's size to whatever you need it to be.
 	setSize(1080, 520);
 	juce::LookAndFeel::setDefaultLookAndFeel(&customLNF);
-
+    
 	//LowBand Compressor Panel
 	addAndMakeVisible(LbCTitle);
 
@@ -24,18 +23,109 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	addAndMakeVisible(LbAUMSliderLabel);
 	addAndMakeVisible(LowCVerticalMeter);
 	addAndMakeVisible(LowCVerticalMeter);
+              
 	addAndMakeVisible(LowCCombo);
+    
+              
 	addAndMakeVisible(LowCAMSlider);
+              LowCAMSlider.setRange(50e-3, 200e-3);
+              LowCAMSlider.setValue(100e-3);
+              LowCAMSlider.onValueChange=[this]
+    {
+        audioProcessor.TaMaxLow=LowCAMSlider.getValue();
+    };
+              
 	addAndMakeVisible(LowCAUMSlider);
+              LowCAUMSlider.setRange(0, 1);
+              LowCAUMSlider.setValue(1);
+              LowCAUMSlider.onValueChange=[this]
+    {
+        audioProcessor.AutoMGLow=LowCAUMSlider.getValue();
+    };
 	addAndMakeVisible(LowCRMSlider);
+              LowCRMSlider.setRange(100e-3, 300e-3);
+              LowCRMSlider.setValue(200e-3);
+              LowCRMSlider.onValueChange=[this]
+    {
+        audioProcessor.TrMaxLow=LowCRMSlider.getValue();
+    };
 
 	//Dropdowns
-	LowCCombo.addItemList(dropDownOptions, 1);
-	HighCCombo.addItemList(dropDownOptions, 1);
-	BandCCombo.addItemList(dropDownOptions, 1);
-	LowCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
-	HighCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
-	BandCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
+              LowCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
+              HighCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
+              BandCCombo.setTextWhenNothingSelected("SELECT A SOURCE");
+              
+              LowCCombo.addItem("IN", 1);
+              LowCCombo.addItem("GR", 2);
+              LowCCombo.addItem("OUT", 3);
+              
+              LowCCombo.onChange=[this]
+              {
+                  if (LowCCombo.getSelectedId() == 1)
+                  {
+                      LowCCombo.setSelectedId(1);
+                      audioProcessor.CBvalueL = 1;
+                  }
+                  else if (LowCCombo.getSelectedId() == 2)
+                  {
+                      LowCCombo.setSelectedId(2);
+                      audioProcessor.CBvalueL = 2;
+                  }
+                  else if(LowCCombo.getSelectedId() == 3)
+                  {
+                      LowCCombo.setSelectedId(3);
+                      audioProcessor.CBvalueL = 3;
+                  }
+              };
+              
+              BandCCombo.addItem("IN", 1);
+              BandCCombo.addItem("GR", 2);
+              BandCCombo.addItem("OUT", 3);
+              
+              BandCCombo.onChange=[this]
+              {
+                  if (BandCCombo.getSelectedId() == 1)
+                  {
+                      BandCCombo.setSelectedId(1);
+                      audioProcessor.CBvalueM = 1;
+                  }
+                  else if (BandCCombo.getSelectedId() == 2)
+                  {
+                      BandCCombo.setSelectedId(2);
+                      audioProcessor.CBvalueM = 2;
+                  }
+                  else if(BandCCombo.getSelectedId() == 3)
+                  {
+                      BandCCombo.setSelectedId(3);
+                      audioProcessor.CBvalueM = 3;
+                  }
+              };
+              
+              
+              HighCCombo.addItem("IN", 1);
+              HighCCombo.addItem("GR", 2);
+              HighCCombo.addItem("OUT", 3);
+              
+              HighCCombo.onChange=[this]
+              {
+                  if (HighCCombo.getSelectedId() == 1)
+                  {
+                      HighCCombo.setSelectedId(1);
+                      audioProcessor.CBvalueH = 1;
+                  }
+                  else if (HighCCombo.getSelectedId() == 2)
+                  {
+                      HighCCombo.setSelectedId(2);
+                      audioProcessor.CBvalueH = 2;
+                  }
+                  else if(HighCCombo.getSelectedId() == 3)
+                  {
+                      HighCCombo.setSelectedId(3);
+                      audioProcessor.CBvalueH = 3;
+                  }
+              };
+              
+
 
 	//Labels
 	LbCTitle.setText("LowBand Compressor", juce::dontSendNotification);
@@ -54,9 +144,30 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	//HighBand Compressor Panel
 	addAndMakeVisible(HighCVerticalMeter);
 	addAndMakeVisible(HighCCombo);
+              
 	addAndMakeVisible(HighCAMSlider);
+              HighCAMSlider.setRange(50e-3, 200e-3);
+              HighCAMSlider.setValue(100e-3);
+              HighCAMSlider.onValueChange=[this]
+    {
+        audioProcessor.TaMaxHigh=HighCAMSlider.getValue();
+    };
 	addAndMakeVisible(HighCAUMSlider);
+              HighCAUMSlider.setRange(0, 1);
+              HighCAUMSlider.setValue(1);
+              HighCAUMSlider.onValueChange=[this]
+    {
+        audioProcessor.AutoMGHigh=HighCAUMSlider.getValue();
+    };
+              
 	addAndMakeVisible(HighCRMSlider);
+              HighCRMSlider.setRange(100e-3, 300e-3);
+              HighCRMSlider.setValue(200e-3);
+              HighCRMSlider.onValueChange=[this]
+    {
+        audioProcessor.TrMaxHigh=HighCRMSlider.getValue();
+    };
+                        
 	//Labels
 	HbCTitle.setText("HighBand Compressor", juce::dontSendNotification);
 	HbAUMSliderLabel.setText("Auto MakeUp", juce::dontSendNotification);
@@ -74,9 +185,28 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	//Band Compressor Panel
 	addAndMakeVisible(BandCVerticalMeter);
 	addAndMakeVisible(BandCCombo);
-	addAndMakeVisible(BandCAMSlider);
-	addAndMakeVisible(BandCAUMSlider);
-	addAndMakeVisible(BandCRMSlider);
+              addAndMakeVisible(BandCAMSlider);
+                        BandCAMSlider.setRange(50e-3, 200e-3);
+                        BandCAMSlider.setValue(100e-3);
+                        BandCAMSlider.onValueChange=[this]
+              {
+                  audioProcessor.TaMaxMid=BandCAMSlider.getValue();
+              };
+              addAndMakeVisible(BandCAUMSlider);
+                        BandCAUMSlider.setRange(0, 1);
+                        BandCAUMSlider.setValue(1);
+                        BandCAUMSlider.onValueChange=[this]
+              {
+                  audioProcessor.AutoMGMid=BandCAUMSlider.getValue();
+              };
+                        
+              addAndMakeVisible(BandCRMSlider);
+                        BandCRMSlider.setRange(100e-3, 300e-3);
+                        BandCRMSlider.setValue(200e-3);
+                        BandCRMSlider.onValueChange=[this]
+              {
+                  audioProcessor.TrMaxMid=BandCRMSlider.getValue();
+              };
 
 	//Labels
 	BCTitle.setText("Band Compressor", juce::dontSendNotification);

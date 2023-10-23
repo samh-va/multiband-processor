@@ -9,7 +9,7 @@ namespace UI
 	public:
 		explicit VerticalGradientMeter(std::function<float()>&& valueFunction) : valueSupplier(std::move(valueFunction))
 		{
-			startTimerHz(24);
+			startTimerHz(15);
 //			grill = juce::ImageCache::getFromMemory(BinaryData::MeterGrill_png, BinaryData::MeterGrill_pngSize);
 		}
 
@@ -21,7 +21,7 @@ namespace UI
 			g.fillRoundedRectangle(bounds,5);
 
 			g.setGradientFill(gradient);
-			const auto scaledY = juce::jmap(valueSupplier(), -120.f, 0.f, 0.f, static_cast<float>(getHeight()));
+			const auto scaledY = juce::jmap(valueSupplier(), -80.f, 0.f, 0.f, static_cast<float>(getHeight()));
 			g.fillRoundedRectangle(bounds.removeFromBottom(scaledY),5);
 		}
 

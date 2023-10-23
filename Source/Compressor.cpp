@@ -84,7 +84,7 @@ void Compressor::Autoballistic(double delta)
 
 void Compressor::calculateMakeUp(float valuein)
 {
-    double Md = -TH*(1-(1/R)); // Se puede variar el porcentaje de cuánto de auto-makeup se quiere
+    double Md = -TH*(1-(1/R));
     makeup = Md * (1 - (valuein / meanTarget));
     
     if(abs(makeup) > Md)

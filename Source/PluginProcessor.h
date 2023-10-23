@@ -8,7 +8,7 @@
 
 #pragma once
 
-
+//#include "PluginEditor.h"
 #include <JuceHeader.h>
 #include "Compressor.h"
 #include "PDF_CirBuffer.h"
@@ -61,26 +61,39 @@ public:
 	void getStateInformation(juce::MemoryBlock& destData) override;
 	void setStateInformation(const void* data, int sizeInBytes) override;
     
-    float grL;
-    float grM;
-    float grH;
+    int CBvalueL = 1;
+    int CBvalueM = 1;
+    int CBvalueH = 1;
     
-    float inL;
-    float inM;
-    float inH;
-    
-    float outLow;
-    float outMid;
-    float outHigh;
-    
-//    float inR;
-//    float grR;
-//    float outR;
-    float TaMax;
-    float TrMax;
+    float value_low=0;
+    float value_mid=0;
+    float value_high=0;
     
     
-    float AutoMG;
+//    float grL;
+//    float grM;
+//    float grH;
+//
+//    float inL;
+//    float inM;
+//    float inH;
+//
+//    float outLow;
+//    float outMid;
+//    float outHigh;
+    
+
+    float TaMaxLow;
+    float TrMaxLow;
+    float AutoMGLow=1;
+    
+    float TaMaxMid;
+    float TrMaxMid;
+    float AutoMGMid=1;
+    
+    float TaMaxHigh;
+    float TrMaxHigh;
+    float AutoMGHigh=1;
 
 private:
     //==============================================================================
