@@ -35,7 +35,7 @@ private:
     float meanTarget = pow(float (10),float (-14)/20);
     float makeup;
     float TH, R, Fsamp;
-//    float AutoMper=1;
+    float por=1;
     
 };
 

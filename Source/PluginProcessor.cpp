@@ -94,7 +94,7 @@ void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int sam
 {
     Fs = AudioProcessor::getSampleRate();
     buffSize = AudioProcessor::getBlockSize();
-
+    setLatencySamples(buffSize);
  
 
     int buffPDFsize = 40;
@@ -102,14 +102,14 @@ void MultibandCompressorAudioProcessor::prepareToPlay(double sampleRate, int sam
     
 // COMPRESORES ---------------------------------------------------------------------------------------------
     
-    CompL_L.setTHandR(Tlr, Rlr,Fs);
-    CompHL_L.setTHandR(Tmr, Rmr,Fs);
-    CompH_L.setTHandR(Thr, Rhr,Fs);
+    CompL_L.setTHandR(Tll, Rll,Fs);
+    CompHL_L.setTHandR(Tml, Rml,Fs);
+    CompH_L.setTHandR(Thl, Rhl,Fs);
 
     
-    CompL_R.setTHandR(Tlr, Rlr,Fs); // POR AHORA SE DEJAN LOS THR Y RATIO DEL LADO L. La idea es cambiar de estados entre esos TH y RT
-    CompHL_R.setTHandR(Tmr, Rmr,Fs);
-    CompH_R.setTHandR(Thr, Rhr,Fs);
+    CompL_R.setTHandR(Tll, Rll,Fs); // POR AHORA SE DEJAN LOS THR Y RATIO DEL LADO L. La idea es cambiar de estados entre esos TH y RT
+    CompHL_R.setTHandR(Tml, Rml,Fs);
+    CompH_R.setTHandR(Thl, Rhl,Fs);
  
     
 // LIMITADORES ---------------------------------------------------------------------------------------------
@@ -296,41 +296,41 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                 
                 if (CBvalueL == 1)
                 {
-                    value_low = abs(firstPL);
+                    value_low = juce::Decibels::gainToDecibels(abs(firstPL));
                 }
                 else if (CBvalueL == 2)
                 {
-                    value_low = abs(1-CompL_L.c);
+                    value_low = juce::Decibels::gainToDecibels(abs(1-CompL_L.c));
                 }
                 else if (CBvalueL == 3)
                 {
-                    value_low = abs(outL);
+                    value_low = juce::Decibels::gainToDecibels(abs(outL));
                 }
                 
                 if (CBvalueM == 1)
                 {
-                    value_mid = abs(secondPL);
+                    value_mid = juce::Decibels::gainToDecibels(abs(secondPL));
                 }
                 else if (CBvalueM == 2)
                 {
-                    value_mid = abs(1-CompHL_L.c);
+                    value_mid = juce::Decibels::gainToDecibels(abs(1-CompHL_L.c));
                 }
                 else if (CBvalueM == 3)
                 {
-                    value_mid = abs(outHL);
+                    value_mid = juce::Decibels::gainToDecibels(abs(outHL));
                 }
                 
                 if (CBvalueH == 1)
                 {
-                    value_high = abs(thirdPL);
+                    value_high = juce::Decibels::gainToDecibels(abs(thirdPL));
                 }
                 else if (CBvalueH == 2)
                 {
-                    value_high = abs(1-CompH_L.c);
+                    value_high = juce::Decibels::gainToDecibels(abs(1-CompH_L.c));
                 }
                 else if (CBvalueH == 3)
                 {
-                    value_high = abs(outH);
+                    value_high = juce::Decibels::gainToDecibels(abs(outH));
                 }
                 
                 channelData[sample] = LimitL.Limiting(outL-outHL+outH);
@@ -384,18 +384,56 @@ void MultibandCompressorAudioProcessor::processBlock(juce::AudioBuffer<float>& b
                     }
                 }
 
-//                CompL_R.setAutoM(AutoMG);
-//                CompHL_R.setAutoM(AutoMG);
-//                CompH_R.setAutoM(AutoMG);
-//                
-//                CompL_R.setARtmax(TaMax, TrMax);
-//                CompHL_R.setARtmax(TaMax, TrMax);
-//                CompH_R.setARtmax(TaMax, TrMax);
+                CompL_R.setAutoM(AutoMGLow);
+                CompHL_R.setAutoM(AutoMGMid);
+                CompH_R.setAutoM(AutoMGHigh);
+                
+                CompL_R.setARtmax(TaMaxLow, TrMaxLow);
+                CompHL_R.setARtmax(TaMaxMid, TrMaxMid);
+                CompH_R.setARtmax(TaMaxHigh, TrMaxHigh);
                 
                 auto outL = CompL_R.Compressing(buffCirL_R.getSample(), deltaL);
                 auto outHL = CompHL_R.Compressing(buffCirHL_R.getSample(), deltaHL);
                 auto outH = CompH_R.Compressing(buffCirH_R.getSample(), deltaH);
 
+                if (CBvalueL == 1)
+                {
+                    value_lowR = juce::Decibels::gainToDecibels(abs(firstPR));
+                }
+                else if (CBvalueL == 2)
+                {
+                    value_lowR = juce::Decibels::gainToDecibels(abs(1-CompL_R.c));
+                }
+                else if (CBvalueL == 3)
+                {
+                    value_lowR = juce::Decibels::gainToDecibels(abs(outL));
+                }
+                
+                if (CBvalueM == 1)
+                {
+                    value_midR = juce::Decibels::gainToDecibels(abs(secondPR));
+                }
+                else if (CBvalueM == 2)
+                {
+                    value_midR = juce::Decibels::gainToDecibels(abs(1-CompHL_R.c));
+                }
+                else if (CBvalueM == 3)
+                {
+                    value_midR = juce::Decibels::gainToDecibels(abs(outHL));
+                }
+                
+                if (CBvalueH == 1)
+                {
+                    value_highR = juce::Decibels::gainToDecibels(abs(thirdPR));
+                }
+                else if (CBvalueH == 2)
+                {
+                    value_highR = juce::Decibels::gainToDecibels(abs(1-CompH_R.c));
+                }
+                else if (CBvalueH == 3)
+                {
+                    value_highR = juce::Decibels::gainToDecibels(abs(outH));
+                }
                 channelData[sample] = LimitR.Limiting(outL-outHL+outH);
             }
 

@@ -38,8 +38,8 @@ private:
 	int comboHeight = 35;
 	int dialWidth = 153;
 	int dialHeight = 125;
-	int meterWidth = 48;
-	int meterHeight = 402;
+    int meterWidth = 40;
+    int meterHeight = 402;
 
 	//LowBand Compressor Panel
 	juce::Label LbPgBarLabel;
@@ -79,4 +79,8 @@ private:
 	juce::CustomDial BandCAUMSlider;
 	juce::CustomDial BandCAMSlider;
 	juce::CustomDial BandCRMSlider;
+    
+    UI::VerticalGradientMeter BandCVerticalMeterR;
+    UI::VerticalGradientMeter HighCVerticalMeterR;
+    UI::VerticalGradientMeter LowCVerticalMeterR;
 };

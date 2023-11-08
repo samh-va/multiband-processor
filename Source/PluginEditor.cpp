@@ -4,8 +4,9 @@
 
 //==============================================================================
 MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor(MultibandCompressorAudioProcessor &p)
-		: AudioProcessorEditor(&p), audioProcessor(p), LowCVerticalMeter([&]() { return audioProcessor.value_low ; }),
-		  HighCVerticalMeter([&]() { return audioProcessor.value_high; }), BandCVerticalMeter([&]() { return audioProcessor.value_mid; }) {
+		: AudioProcessorEditor(&p), audioProcessor(p), LowCVerticalMeter([&]() { return (audioProcessor.value_low) ; }),
+		  HighCVerticalMeter([&]() { return audioProcessor.value_high; }), BandCVerticalMeter([&]() { return audioProcessor.value_mid; }),
+BandCVerticalMeterR([&]() { return audioProcessor.value_midR; }), HighCVerticalMeterR([&]() { return audioProcessor.value_highR; }),LowCVerticalMeterR([&]() { return audioProcessor.value_lowR ;}) {
 
 	// Make sure that before the constructor has finished, you've set the
 	// editor's size to whatever you need it to be.
@@ -23,6 +24,8 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 	addAndMakeVisible(LbAUMSliderLabel);
 	addAndMakeVisible(LowCVerticalMeter);
 	addAndMakeVisible(LowCVerticalMeter);
+    addAndMakeVisible(LowCVerticalMeterR);
+
               
 	addAndMakeVisible(LowCCombo);
     
@@ -31,6 +34,7 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
               LowCAMSlider.setRange(50e-3, 200e-3);
               LowCAMSlider.setValue(100e-3);
               LowCAMSlider.onValueChange=[this]
+
     {
         audioProcessor.TaMaxLow=LowCAMSlider.getValue();
     };
@@ -143,6 +147,8 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 
 	//HighBand Compressor Panel
 	addAndMakeVisible(HighCVerticalMeter);
+    addAndMakeVisible(HighCVerticalMeterR);
+
 	addAndMakeVisible(HighCCombo);
               
 	addAndMakeVisible(HighCAMSlider);
@@ -184,6 +190,8 @@ MultibandCompressorAudioProcessorEditor::MultibandCompressorAudioProcessorEditor
 
 	//Band Compressor Panel
 	addAndMakeVisible(BandCVerticalMeter);
+    addAndMakeVisible(BandCVerticalMeterR);
+
 	addAndMakeVisible(BandCCombo);
               addAndMakeVisible(BandCAMSlider);
                         BandCAMSlider.setRange(50e-3, 200e-3);
@@ -247,25 +255,38 @@ void MultibandCompressorAudioProcessorEditor::resized() {
 	//LowBand Compressor Panel
 	LbCTitle.setBounds(15, 14, 323, 58);
 	LbPgBarLabel.setBounds(20, 407, 20, 20);
-	LowCVerticalMeter.setBounds(20, 66, meterWidth,meterHeight);
-	LowCCombo.setBounds(115, 66, comboWidth,comboHeight);
+    LowCVerticalMeter.setBounds(20, 66, meterWidth,meterHeight);
+    LowCVerticalMeterR.setBounds(60, 66, meterWidth,meterHeight);
+    LowCCombo.setBounds(115, 66, comboWidth,comboHeight);
 	LowCAUMSlider.setBounds(152, 160, dialWidth,dialHeight);
 	LowCAMSlider.setBounds(210, 343, dialWidth,dialHeight);
 	LowCRMSlider.setBounds(90, 343, dialWidth,dialHeight);
 
 	//HighBand Compressor Panel
-	HbCTitle.setBounds(374, 14, 323, 58);
-	HighCVerticalMeter.setBounds(380, 66, meterWidth,meterHeight);
-	HighCCombo.setBounds(475, 66, comboWidth,comboHeight);
-	HighCAUMSlider.setBounds(512, 160, dialWidth,dialHeight);
-	HighCAMSlider.setBounds(570, 343, dialWidth,dialHeight);
-	HighCRMSlider.setBounds(450, 343, dialWidth,dialHeight);
+	HbCTitle.setBounds(733, 14, 323, 58);
+    HighCVerticalMeter.setBounds(750, 66, meterWidth,meterHeight);
+    HighCVerticalMeterR.setBounds(790, 66, meterWidth,meterHeight);
+	HighCCombo.setBounds(845, 66, comboWidth,comboHeight);
+	HighCAUMSlider.setBounds(882, 160, dialWidth,dialHeight);
+	HighCAMSlider.setBounds(940, 343, dialWidth,dialHeight);
+	HighCRMSlider.setBounds(820, 343, dialWidth,dialHeight);
 
 	//Band Compressor Panel
-	BCTitle.setBounds(733, 14, 323, 58);
-	BandCVerticalMeter.setBounds(750, 66, meterWidth,meterHeight);
-	BandCCombo.setBounds(845, 66, comboWidth,comboHeight);
-	BandCAUMSlider.setBounds(882, 160, dialWidth,dialHeight);
-	BandCAMSlider.setBounds(940, 343, dialWidth,dialHeight);
-	BandCRMSlider.setBounds(820, 343, dialWidth,dialHeight);
+	BCTitle.setBounds(374, 14, 323, 58);
+    BandCVerticalMeter.setBounds(380, 66, meterWidth,meterHeight);
+    BandCVerticalMeterR.setBounds(420, 66, meterWidth,meterHeight);
+	BandCCombo.setBounds(475, 66, comboWidth,comboHeight);
+	BandCAUMSlider.setBounds(512, 160, dialWidth,dialHeight);
+	BandCAMSlider.setBounds(570, 343, dialWidth,dialHeight);
+	BandCRMSlider.setBounds(450, 343, dialWidth,dialHeight);
+    
+    
+//    HbCTitle.setBounds(374, 14, 323, 58);
+//    HighCVerticalMeter.setBounds(750, 66, meterWidth,meterHeight);
+//    HighCVerticalMeterR.setBounds(790, 66, meterWidth,meterHeight);
+//    HighCCombo.setBounds(475, 66, comboWidth,comboHeight);
+//    HighCAUMSlider.setBounds(512, 160, dialWidth,dialHeight);
+//    HighCAMSlider.setBounds(570, 343, dialWidth,dialHeight);
+//    HighCRMSlider.setBounds(450, 343, dialWidth,dialHeight);
+    
 }

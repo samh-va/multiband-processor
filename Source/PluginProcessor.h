@@ -65,9 +65,13 @@ public:
     int CBvalueM = 1;
     int CBvalueH = 1;
     
-    float value_low=0;
-    float value_mid=0;
-    float value_high=0;
+    float value_low=-60;
+    float value_mid=-60;
+    float value_high=-60;
+    
+    float value_lowR=-60;
+    float value_midR=-60;
+    float value_highR=-60;
     
     
 //    float grL;
@@ -83,16 +87,16 @@ public:
 //    float outHigh;
     
 
-    float TaMaxLow;
-    float TrMaxLow;
+    float TaMaxLow=100e-3;
+    float TrMaxLow=200e-3;
     float AutoMGLow=1;
     
-    float TaMaxMid;
-    float TrMaxMid;
+    float TaMaxMid=100e-3;
+    float TrMaxMid=200e-3;
     float AutoMGMid=1;
     
-    float TaMaxHigh;
-    float TrMaxHigh;
+    float TaMaxHigh=100e-3;
+    float TrMaxHigh=200e-3;
     float AutoMGHigh=1;
 
 private:
@@ -155,7 +159,7 @@ private:
     
 // OTROS -----------------------------------------------------------------------------------
         float Fs;
-        float buffSize;
+        int buffSize;
     
     float Rhl = 1.21496449059066;
     float Thl = -27;

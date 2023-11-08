@@ -21,7 +21,7 @@ namespace UI
 			g.fillRoundedRectangle(bounds,5);
 
 			g.setGradientFill(gradient);
-			const auto scaledY = juce::jmap(valueSupplier(), -80.f, 0.f, 0.f, static_cast<float>(getHeight()));
+			const auto scaledY = juce::jmap(valueSupplier(), -60.f, 0.f, 0.f, static_cast<float>(getHeight()));
 			g.fillRoundedRectangle(bounds.removeFromBottom(scaledY),5);
 		}
 
